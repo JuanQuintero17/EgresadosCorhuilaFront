@@ -1,0 +1,83 @@
+<div class="container">
+  <div class="left-sidebar">
+    <div class="form-group">
+      <input type="file" class="form-control" id="foto" style="display: none;">
+      <div class="profile-picture"></div>
+      <button type="button" class="btn btn-seleccionar" onclick="document.getElementById('foto').click()">Insertar Foto </button>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="top-navbar">
+        <h1>Crea tu cuenta</h1>
+    </div>
+    <div class="cuestionario">
+        <div class="cuest">
+            <div class="cuest-left">
+                <div class="form-group1">
+                  <label for="nombre">Nombres<span class="required"> *</span></label>
+                  <input type="text" class="form-control" id="nombre">
+                </div>
+                <div class="form-group1">
+                  <label for="nombre">Correo Personal<span class="required"> *</span></label>
+                  <input type="text" class="form-control" id="nombre">
+                </div>
+                <div class="form-group1">
+                  <label for="nombre">Fecha de Nacimiento<span class="required"> *</span></label>
+                  <input type="text" class="form-control" id="nombre">
+                </div>
+                <div class="form-group1">
+                  <label for="nombre">Documento Identidad<span class="required"> *</span></label>
+                  <input type="text" class="form-control" id="nombre">
+                </div>
+                <div class="form-group1">
+                  <label for="nombre">Ciudad de Residencia<span class="required"> *</span></label>
+                  <input type="text" class="form-control" id="nombre">
+                </div>
+                <div class="form-group1">
+                  <label for="nombre">Telefono Celular<span class="required"> *</span></label>
+                  <input type="text" class="form-control" id="nombre">
+                </div>
+            </div>
+            <div class="cuest-rigth">
+                <div class="form-group1">
+                  <label for="correo">Apellidos<span class="required"> *</span></label>
+                  <input type="email" class="form-control" id="correo">
+                </div>
+                <div class="form-group1">
+                  <label for="correo">Correo Institucional<span class="required"> *</span></label>
+                  <input type="email" class="form-control" id="correo">
+                </div>
+                <div class="form-group1">
+                  <label for="correo">Edad<span class="required"> *</span></label>
+                  <input type="email" class="form-control" id="correo">
+                </div>
+                <div class="form-group1">
+                  <label for="correo">Numero de Identificación<span class="required"> *</span></label>
+                  <input type="email" class="form-control" id="correo">
+                </div>
+                <div class="form-group1">
+                  <label for="correo">Dirección Residencia<span class="required"> *</span></label>
+                  <input type="email" class="form-control" id="correo">
+                </div>
+                <div class="form-group1">
+                  <label for="correo">Contraseña<span class="required"> *</span></label>
+                  <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password" required>
+                    <span class="password-toggle-icon" (click)="togglePasswordVisibility()">
+                        <i class="fa" [ngClass]="{'fa-eye-slash': !showPassword, 'fa-eye': showPassword}"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="datos-personales">
+        <h3>Datos <br> Personales</h3>
+        <button type="button" class="btn btn-seleccionar">
+          <i class="fa fa-lock"></i> Guardar
+        </button>
+        <div class="aceptar-terminos">
+          <input type="checkbox" id="terminos" />
+          <label for="terminos">Aceptar <br> términos y <br> condiciones</label>
+        </div>
+    </div>
+  </div>
+</div>

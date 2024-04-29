@@ -1,0 +1,99 @@
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
+
+.container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .left-sidebar {
+    width: 250px;
+    background-color: #1F8943;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+  }
+
+  .left-sidebar img {
+    text-align: center;
+    width: 140px;
+    height: auto;
+  }
+  
+  .nav-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30%;
+  }
+  
+  .nav-menu li {
+    margin-bottom: 10px;
+  }
+  
+  .nav-menu a {
+    color: #444;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    transition: background-color 0.2s ease;
+    border-radius: 50px;
+  }
+  
+  .nav-menu a:hover {
+    background-color: #ddd;
+    border-radius: 50px;
+  }
+  
+  .nav-menu a i {
+    margin-right: 10px;
+    color: white;
+    font-size: 25px;
+  }
+  
+  .main-content {
+    flex: 1;
+    margin-top: 60px;
+  }
+  
+  .nav-menu a span {
+    color: white;
+    font-size: 20px;
+  }
+
+  .top-navbar {
+    width: 100%;
+    height: 40px;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    width: calc(100% - 250px);
+    z-index: 1000;
+    top: 0;
+  }
+  
+  .top-navbar h2 {
+    margin: 0;
+    font-size: 24px;
+    color: black;
+    margin-left: 5%;
+    margin-top: 10px;
+  }
+  .nav-menu a.active {
+    background-color: white;
+    border-radius: 50px;
+  }
+
+  .nav-menu a.active span{
+    color: #1F8943;
+    font-weight: bold;
+  }
+
+  .nav-menu a.active i{
+    color: #1F8943;
+    font-weight: bold;
+  }

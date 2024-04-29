@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="left-sidebar">
+    <img src="../../assets/img/corhuila.png">
+    <ul class="nav-menu">
+      <li *ngFor="let item of navbarEgresado">
+        <a [routerLink]="item.routeLink" routerLinkActive="active" (click)="updateSelectedNavItem(item)">
+          <i class="{{ item.icon }}"></i>
+          <span>{{ item.label }}</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="main-content">
+    <div class="top-navbar">
+      <h2>{{ selectedNavItem ? selectedNavItem.label : '' }}</h2>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

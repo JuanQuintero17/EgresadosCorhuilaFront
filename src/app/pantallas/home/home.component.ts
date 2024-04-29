@@ -1,0 +1,29 @@
+import { Component, OnInit } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { navbarData } from 'src/environments/navBar';
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
+})
+export class HomeComponent implements OnInit {
+
+  navbarData = navbarData;
+  selectedNavItem: any;
+
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        const currentRoute = this.router.url.split('/')[2];
+        this.selectedNavItem = navbarData.find(item => item.routeLink === currentRoute);
+      }
+    });
+  }
+
+  updateSelectedNavItem(item: any) {
+    this.selectedNavItem = item;
+  }
+}

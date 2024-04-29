@@ -1,0 +1,71 @@
+<div class="news-publisher">
+    <div class="news-sidebar">
+        <ul class="news-list">
+            <li class="news-item">
+              <span class="news-title">Noticia N°1</span>
+              <label class="switch">
+                <input type="checkbox" checked>
+                <span class="slider round"></span>
+              </label>
+            </li>
+            <li class="news-item">
+              <span class="news-title">Noticia N°2</span>
+              <label class="switch">
+                <input type="checkbox">
+                <span class="slider round"></span>
+              </label>
+            </li>
+            <li class="news-item">
+                <span class="news-title">Noticia N°3</span>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
+              </li>
+              <li class="news-item">
+                <span class="news-title">Noticia N°4</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </li>
+              <li class="news-item">
+                <span class="news-title">Noticia N°5</span>
+                <label class="switch">
+                  <input type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
+              </li>
+              <li class="news-item">
+                <span class="news-title">Noticia N°6</span>
+                <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                </label>
+              </li>
+          </ul>
+    </div>
+
+    <div class="form-container">
+        <form>
+            <div class="form-group">
+                <label for="title">Título Principal de la Noticia *</label>
+                <input id="title" type="text" formControlName="title" placeholder="Título de la noticia" required>
+            </div>
+
+            <div class="form-group">
+                <label for="content">Contenido de la Noticia *</label>
+                <input type="text" class="inputContenido" id="content" formControlName="content" required>
+            </div>
+
+            <div class="image-upload">
+                <label for="image1">Imagen 1 *</label>
+                <input id="image1" type="file">
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="publish-btn">Publicar</button>
+            </div>
+        </form>
+    </div>
+</div>

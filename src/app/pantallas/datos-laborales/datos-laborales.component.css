@@ -1,0 +1,104 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+.container {
+    display: flex;
+}
+
+.main-content {
+    flex: 1;
+    margin-top: 60px;
+    display: flex;
+}
+
+.required {
+    color: #e74c3c;
+    margin-left: 5px;
+}
+
+.cuestionario {
+    height: 110%;
+    width: 75%;
+    margin-top: -30px;
+    margin-left: 15px;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+    display: flex;
+    max-height: 520px;
+}
+
+.form-group1 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.cuest-left,
+.cuest-rigth {
+    width: 35%;
+    float: left;
+    margin-left: 9%;
+}
+
+input {
+    width: 100%;
+    padding: 9px;
+    font-size: 16px;
+    border-radius: 100px;
+    border: 1px solid #adacac;
+    background-color: #F6F6F6;
+}
+
+label {
+    display: block;
+}
+
+.cuest {
+    width: 100%;
+    height: auto;
+    margin-top: 36px;
+}
+
+@media screen and (max-width: 768px) {
+    .cuest-left,
+    .cuest-rigth {
+        width: 100%;
+        float: none;
+        margin-left: 0;
+    }
+}
+
+.datos-personales {
+  width: 30%;
+  margin-top: -70px;
+}
+
+.btn-anterior{
+    width: 60%;
+    background-color: white;
+    color: #1F8943;
+    font-size: 17px;
+    margin-left: 20%;
+    border: 1px solid white;
+    font-weight: bold;
+    margin-top: -10px;
+}
+
+.btn-guardar{
+    width: 50%;
+    padding: 8px;
+    background-color: #1F8943;
+    color: white;
+    font-size: 20px;
+    margin-left: 25%;
+    border: 1px solid white;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.datos-personales h3 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 23px;
+    margin-top: 150px;
+}

@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<div class="login-container">
+    <div class="left-half">
+      <form class="login-form" (ngSubmit)="login()" #loginForm="ngForm">
+        <div class="login-header">
+            <h1>Bienvenido<br>Administrador</h1>
+            <img src="../../assets/img/corhuila.png">
+        </div>
+        <div class="form-group">
+            <input type="text" id="username" name="username" placeholder="Numero Identificación" 
+                   [(ngModel)]="formData.username" #username="ngModel" required>
+            <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="error-message">
+              <div class="campoRequerido" *ngIf="username?.errors?.['required']">El nombre de usuario es requerido.</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="password-input-container">
+              <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password"
+                     placeholder="Contraseña" [(ngModel)]="formData.password" #password="ngModel" required>
+              <span class="password-toggle-icon" (click)="togglePasswordVisibility()">
+                <i class="fa" [ngClass]="{'fa-eye-slash': !showPassword, 'fa-eye': showPassword}"></i>
+              </span>
+            </div>
+            <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error-message">
+              <div class="campoRequerido" *ngIf="password?.errors?.['required']">La contraseña es requerida.</div>
+            </div>
+          </div>
+          <div class="additional-options">
+            <a>¿Olvidaste tu contraseña?</a>
+          </div>
+        <button class="button-login" type="submit" (click)="entrar()" >Iniciar Sesión</button>
+        <div *ngIf="showError" class="error-message">Credenciales inválidas. Inténtalo de nuevo.</div>
+      </form>
+    </div>
+    <div class="right-half"></div>
+  </div>
+  

@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="main-content">
+    <div class="cuestionario">
+        <div class="cuest">
+            <div class="cuest-left">
+                <div class="form-group1">
+                  <label for="nombre">Sede Universitaria<span class="required"> *</span></label>
+                  <input type="text" class="form-control" id="sedeUniversitaria" name="sedeUniversitaria" [(ngModel)]="datosFormulario2.sedeUniversitaria">
+                </div>
+                <div class="form-group1">
+                  <label for="nombre">Facultad<span class="required"> *</span></label>
+                  <input type="text" class="form-control" id="facultad" name="facultad" [(ngModel)]="datosFormulario2.facultad">
+                </div>
+                <div class="form-group1">
+                  <label for="nombre">Ultimo Semestre Cursado<span class="required"> *</span></label>
+                  <input type="text" class="form-control" id="ultimoSemestreCursado" name="ultimoSemestreCursado" [(ngModel)]="datosFormulario2.ultimoSemestreCursado">
+                </div>
+                <div class="form-group1">
+                  <label for="nombre">Fecha de Grado<span class="required"> *</span></label>
+                  <input type="text" class="form-control" id="fechaGrado" name="fechaGrado" [(ngModel)]="datosFormulario2.fechaGrado">
+                </div>
+                <div class="form-group1">
+                  <label for="nombre">Calificación Obtenida<span class="required"> *</span></label>
+                  <input type="text" class="form-control" id="calificacionObtenida" name="calificacionObtenida" [(ngModel)]="datosFormulario2.calificacionObtenida">
+                </div>
+                <div class="form-group1">
+                  <label for="nombre">Titulo Obtenido<span class="required"> *</span></label>
+                  <input type="text" class="form-control" id="tituloObtenido" name="tituloObtenido" [(ngModel)]="datosFormulario2.tituloObtenido">
+                </div>
+            </div>
+            <div class="cuest-rigth">
+                <div class="form-group1">
+                  <label for="correo">Ultimo nivel de Formación<span class="required"> *</span></label>
+                  <input type="email" class="form-control" id="ultimoNivelFormacion" name="ultimoNivelFormacion" [(ngModel)]="datosFormulario2.ultimoNivelFormacion">
+                </div>
+                <div class="form-group1">
+                  <label for="correo">Programa<span class="required"> *</span></label>
+                  <input type="email" class="form-control" id="programa" name="programa" [(ngModel)]="datosFormulario2.programa">
+                </div>
+                <div class="form-group1">
+                  <label for="correo">Graduado ?<span class="required"> *</span></label>
+                  <input type="email" class="form-control" id="graduado" name="graduado" [(ngModel)]="datosFormulario2.graduado">
+                </div>
+                <div class="form-group1">
+                  <label for="correo">Modalidad de Grado<span class="required"> *</span></label>
+                  <input type="email" class="form-control" id="modalidadGrado" name="modalidadGrado" [(ngModel)]="datosFormulario2.modalidadGrado">
+                </div>
+                <div class="form-group1">
+                  <label for="correo">Titulo trabajo de Grado<span class="required"> *</span></label>
+                  <input type="email" class="form-control" id="tituloTrabajoGrado" name="tituloTrabajoGrado" [(ngModel)]="datosFormulario2.tituloTrabajoGrado">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="datos-personales">
+        <h3>Datos de<br> Educacion</h3>
+        <button (click)="anteriorFormulario()">< Anterior</button>
+        <button (click)="siguienteFormulario()">Siguiente ></button>
+    </div>
+  </div>
+</div>

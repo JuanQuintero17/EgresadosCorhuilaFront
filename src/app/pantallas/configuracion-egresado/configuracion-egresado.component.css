@@ -1,0 +1,136 @@
+@import "~@fortawesome/fontawesome-free/css/all.css";
+.formulario {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: left;
+  font-size: 40px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group h3{
+  margin-left: 25px;
+  color: #7E7E7E;
+  font-weight: bold;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: #7E7E7E;
+  font-weight: bold;
+}
+
+input,
+select{
+  width: 50%;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 100px;
+  border: 1px solid #ccc;
+}
+
+.button-conf {
+  background-color: #1F8943;
+  color: white;
+  cursor: pointer;
+  width: 150px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.button-perfil{
+  background-color: #1F8943;
+  color: white;
+  cursor: pointer;
+  width: 150px;
+  margin-top: 25px;
+  padding: 8px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.profile-picture {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0 0 5px #FFF, 0 0 0 10px #1F8943;
+  background-color: #ccc;
+}
+
+.profile-picture::before {
+  content: "\f007";
+  font-family: FontAwesome;
+  font-size: 80px;
+  color: #aaa;
+  position: absolute;
+}
+
+.flex-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-section,
+.right-section {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .left-section {
+    width: 40%;
+    margin-left: 15%;
+  }
+
+  .right-section {
+    width: 60%;
+  }
+}
+
+.required {
+  color: #e74c3c;
+  margin-left: 5px;
+}
+
+.password-input-container {
+  position: relative;
+}
+
+.password-toggle-icon {
+  position: relative;
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #2A3240;
+}
+
+.fa {
+  font-size: 16px;
+}
+

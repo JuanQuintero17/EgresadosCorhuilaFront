@@ -5,6 +5,11 @@
     height: 100vh;
 }
 
+.register-group {
+    display: flex;
+    flex-direction: column;
+  }
+
 .left-sidebar {
     width: 250px;
     background-color: #1F8943;

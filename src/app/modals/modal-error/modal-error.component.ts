@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-modal-error',
@@ -7,10 +7,16 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class ModalErrorComponent {
 
-  @Output() close = new EventEmitter<void>();
+  @Input() message: string = 'Ocurrio un error';
+  visible: boolean = false
+
+  showError(message:string){
+    this.message = message;
+    this.visible = true;
+  }
 
   handleCloseClick() {
-    this.close.emit();
+    this.visible = false;
   }
 
 }

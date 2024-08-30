@@ -8,7 +8,8 @@ export const environment = {
   urlApi: 'http://localhost:8080/security',
   urlauth: 'http://localhost:8080/security/egresados/ingresar',
   urlImage: './assets/img',
-  redirect: 'http://localhost:4200/home'
+  redirect: 'http://localhost:4200/home',
+  apiResURL: 'http://localhost:8080'
 };
 
 /*

@@ -1,12 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalErrorComponent } from 'src/app/modals/modal-error/modal-error.component';
+import { LoginUserDto } from 'src/app/model/login-user-dto';
+import { AuthService } from 'src/app/services/auth.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
+
+  @ViewChild('errorModal') errorModal!:ModalErrorComponent;
 
   showPassword: boolean = false;
   showError = false;
@@ -18,7 +24,15 @@ export class LoginComponent {
     password: ''
   };
 
-  constructor(private router:Router){}
+  constructor(
+    private authService:AuthService,
+    private tokenService:TokenService,
+    private router:Router
+  ){}
+
+  ngOnInit(): void {
+    
+  }
 
   togglePasswordVisibility(){
     this.showPassword = !this.showPassword;
@@ -45,6 +59,17 @@ export class LoginComponent {
   }
 
   entrar(){
-    this.router.navigate(['/homeEgresado']);
+    const dto = new LoginUserDto(this.formData.username, this.formData.password);
+    this.authService.login(dto).subscribe(
+      data => {
+        this.tokenService.setToken(data.token)
+        this.router.navigate(['/homeEgresado']);
+      },
+      err => {
+        console.log('Error al iniciar sesion');
+        this.errorModal.showError('Error al iniciar sesion ')
+        
+      }
+    )
   }
 }

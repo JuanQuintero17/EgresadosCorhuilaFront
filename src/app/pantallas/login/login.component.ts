@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit{
     this.authService.login(dto).subscribe(
       data => {
         this.tokenService.setToken(data.token)
-        this.router.navigate(['/homeEgresado']);
+        this.router.navigate(['/homeEgresado/noticiasEgresado']);
       },
       err => {
         console.log('Error al iniciar sesion');

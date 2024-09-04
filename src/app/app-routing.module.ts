@@ -17,89 +17,93 @@ import { ConfiguracionEgresadoComponent } from './pantallas/configuracion-egresa
 import { DatosEducacionComponent } from './pantallas/datos-educacion/datos-educacion.component';
 import { DatosLaboralesComponent } from './pantallas/datos-laborales/datos-laborales.component';
 import { NoticiasEgresadoInfoComponent } from './pantallas/noticias-egresado-info/noticias-egresado-info.component';
+import { LoginGuard } from './guards/login.guard';
+import { HomeEgresadoGuard } from './guards/home-egresado.guard';
 
 const routes: Routes = [
   {
-    path : 'login',
-    component : LoginComponent
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [LoginGuard]
   },
   {
-    path : 'admin',
-    component : AdminComponent
+    path: 'admin',
+    component: AdminComponent
   },
   {
-    path : 'home',
-    component : HomeComponent,
-    children:[
+    path: 'home',
+    component: HomeComponent,
+    children: [
       {
-        path : '',
-        component : DashboardComponent
+        path: '',
+        component: DashboardComponent
       },
       {
-        path : 'dashboard',
-        component : DashboardComponent
+        path: 'dashboard',
+        component: DashboardComponent
       },
       {
-        path : 'reporte',
-        component : ReporteComponent
+        path: 'reporte',
+        component: ReporteComponent
       },
       {
-        path : 'configuracion',
-        component : ConfiguracionComponent
+        path: 'configuracion',
+        component: ConfiguracionComponent
       },
       {
-        path : 'noticias',
-        component : NoticiasComponent
+        path: 'noticias',
+        component: NoticiasComponent
       }
     ]
   },
   {
-    path : 'homeEgresado',
-    component : HomeEgresadoComponent,
-    children:[
+    path: 'homeEgresado',
+    component: HomeEgresadoComponent,
+    canActivate: [HomeEgresadoGuard],
+    children: [
       {
-        path : '',
-        component : NoticiasEgresadoComponent
+        path: '',
+        component: NoticiasEgresadoComponent
       },
       {
-        path : 'noticiasEgresado',
-        component : NoticiasEgresadoComponent,
+        path: 'noticiasEgresado',
+        component: NoticiasEgresadoComponent,
       },
       {
-        path : 'noticiasInfo',
-        component : NoticiasEgresadoInfoComponent
+        path: 'noticiasInfo',
+        component: NoticiasEgresadoInfoComponent
       },
       {
-        path : 'actualizar',
-        component : ActualizarEgresadoComponent,
+        path: 'actualizar',
+        component: ActualizarEgresadoComponent,
       },
       {
-        path : 'configuracionEgresado',
-        component : ConfiguracionEgresadoComponent
+        path: 'configuracionEgresado',
+        component: ConfiguracionEgresadoComponent
       },
       {
-        path : 'datosEducacion',
-        component : DatosEducacionComponent
+        path: 'datosEducacion',
+        component: DatosEducacionComponent
       },
       {
-        path : 'datosLaborales',
-        component : DatosLaboralesComponent
+        path: 'datosLaborales',
+        component: DatosLaboralesComponent
       },
     ]
   },
   {
-    path : 'modalError',
-    component : ModalErrorComponent
+    path: 'modalError',
+    component: ModalErrorComponent
   },
   {
-    path : 'modalCorreo',
-    component : ModalCorreoComponent
+    path: 'modalCorreo',
+    component: ModalCorreoComponent
   },
   {
-    path : 'crearCuenta',
-    component : CrearCuentaComponent
+    path: 'crearCuenta',
+    component: CrearCuentaComponent
   },
-  
+
 ];
 
 @NgModule({

@@ -20,4 +20,24 @@ export class TokenService {
   public logOut(): void{
     localStorage.removeItem(TOKEN_KEY);
   }
+
+  public isLogged(): boolean {
+    return this.getToken() != null;
+  }
+
+  public isAdmin(): boolean {
+    if(!this.isLogged()){
+      return false;
+    }
+
+    const token = this.getToken();
+    const payload = token!.split(".")[1];
+    const payloadDecode = atob(payload);
+    const values = JSON.parse(payloadDecode);
+    const roles = values.roles;
+    if(roles.indexOf('ROL_ADMIN') < 0){
+      return false;
+    }
+    return true;
+  }
 }

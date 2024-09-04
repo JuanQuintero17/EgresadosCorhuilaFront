@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from 'ngx-ui-loader';
@@ -26,6 +26,7 @@ import { ConfiguracionEgresadoComponent } from './pantallas/configuracion-egresa
 import { DatosEducacionComponent } from './pantallas/datos-educacion/datos-educacion.component';
 import { DatosLaboralesComponent } from './pantallas/datos-laborales/datos-laborales.component';
 import { NoticiasEgresadoInfoComponent } from './pantallas/noticias-egresado-info/noticias-egresado-info.component';
+import { UsersInterceptor } from './interceptors/users.interceptor';
 
 
 @NgModule({
@@ -63,7 +64,9 @@ import { NoticiasEgresadoInfoComponent } from './pantallas/noticias-egresado-inf
     }),
     BrowserAnimationsModule,
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: UsersInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

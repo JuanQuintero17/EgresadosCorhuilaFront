@@ -40,4 +40,17 @@ export class TokenService {
     }
     return true;
   }
+
+  public getDocument(): string {
+    if(!this.isLogged()){
+      return "No esta logueado";
+    }
+
+    const token = this.getToken();
+    const payload = token!.split(".")[1];
+    const payloadDecode = atob(payload);
+    const values = JSON.parse(payloadDecode);
+    return values.sub;
+    
+  }
 }

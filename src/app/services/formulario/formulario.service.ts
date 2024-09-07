@@ -8,6 +8,9 @@ export class FormularioService {
   datosFormulario1: any = {};
   datosFormulario2: any = {};
   datosFormulario3: any = {};
+  datosCargadosForm1: boolean = false;
+  datosCargadosForm2: boolean = false;
+  datosCargadosForm3: boolean = false;
 
   constructor(){}
 

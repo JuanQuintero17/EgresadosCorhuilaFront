@@ -5,6 +5,7 @@ import { LoginUserDto } from '../model/login-user-dto';
 import { Observable } from 'rxjs';
 import { JwtTokenDto } from '../model/jwt-token-dto';
 import { CreateUserDto } from '../model/create-user-dto';
+import { PreRegistro } from '../model/pre-registro';
 
 @Injectable({
   providedIn: 'root'
@@ -21,5 +22,9 @@ export class AuthService {
 
   public register(dto: CreateUserDto): Observable<any> {
     return this.httpClient.post<any>(this.authURL + 'create', dto)
+  }
+
+  public preRegister(dto: PreRegistro): Observable<any> {
+    return this.httpClient.post<any>(this.authURL + 'preRegistro', dto)
   }
 }

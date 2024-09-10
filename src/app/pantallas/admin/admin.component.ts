@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginUserDto } from 'src/app/model/login-user-dto';
+import { AuthService } from 'src/app/services/auth.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-admin',
@@ -16,7 +19,11 @@ export class AdminComponent {
   };
   showError = false;
 
-  constructor(private router : Router){}
+  constructor(
+    private authService:AuthService,
+    private tokenService:TokenService,
+    private router:Router
+  ){}
 
   login(): void {
     if (this.formData.username === 'usuario' && this.formData.password === 'contraseña') {
@@ -31,7 +38,16 @@ export class AdminComponent {
   }
 
   entrar(){
-    this.router.navigate(['/home']);
+    const dto = new LoginUserDto(this.formData.username, this.formData.password);
+    this.authService.login(dto).subscribe(
+      data => {
+        this.tokenService.setToken(data.token)
+        this.router.navigate(['/home/dashboard']);
+      },
+      err => {
+        console.log('Error al iniciar sesion');
+      }
+    )
   }
 
 }

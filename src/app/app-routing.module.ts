@@ -19,6 +19,8 @@ import { DatosLaboralesComponent } from './pantallas/datos-laborales/datos-labor
 import { NoticiasEgresadoInfoComponent } from './pantallas/noticias-egresado-info/noticias-egresado-info.component';
 import { LoginGuard } from './guards/login.guard';
 import { HomeEgresadoGuard } from './guards/home-egresado.guard';
+import { LoginAdminGuard } from './guards/login-admin.guard';
+import { HomeAdminGuard } from './guards/home-admin.guard';
 
 const routes: Routes = [
   {
@@ -28,11 +30,13 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent
+    component: AdminComponent,
+    canActivate: [LoginAdminGuard]
   },
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [HomeAdminGuard],
     children: [
       {
         path: '',

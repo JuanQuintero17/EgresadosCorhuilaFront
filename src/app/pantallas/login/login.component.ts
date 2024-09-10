@@ -66,9 +66,7 @@ export class LoginComponent implements OnInit{
         this.router.navigate(['/homeEgresado/noticiasEgresado']);
       },
       err => {
-        console.log('Error al iniciar sesion');
-        this.errorModal.showError('Error al iniciar sesion ')
-        
+        console.log('Error al iniciar sesion');        
       }
     )
   }

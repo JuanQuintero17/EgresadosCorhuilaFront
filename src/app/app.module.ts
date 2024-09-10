@@ -27,6 +27,7 @@ import { DatosEducacionComponent } from './pantallas/datos-educacion/datos-educa
 import { DatosLaboralesComponent } from './pantallas/datos-laborales/datos-laborales.component';
 import { NoticiasEgresadoInfoComponent } from './pantallas/noticias-egresado-info/noticias-egresado-info.component';
 import { UsersInterceptor } from './interceptors/users.interceptor';
+import { NoticiasComponent } from './pantallas/noticias/noticias.component';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import { UsersInterceptor } from './interceptors/users.interceptor';
     DatosEducacionComponent,
     DatosLaboralesComponent,
     NoticiasEgresadoInfoComponent,
+    NoticiasComponent
   ],
   imports: [
     BrowserModule,

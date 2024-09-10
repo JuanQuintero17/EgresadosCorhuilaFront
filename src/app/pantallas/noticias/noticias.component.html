@@ -1,70 +1,45 @@
 <div class="news-publisher">
     <div class="news-sidebar">
         <ul class="news-list">
-            <li class="news-item">
-              <span class="news-title">Noticia N°1</span>
+            <li class="news-item" *ngFor="let noticia of noticias" (click)="cargarNoticia(noticia)">
+              <span class="news-title">{{ noticia.title }}</span>
               <label class="switch">
-                <input type="checkbox" checked>
+                <input type="checkbox" 
+                [checked]="noticia.status"
+                (change)="onStatusChange(noticia, $event)">
                 <span class="slider round"></span>
               </label>
             </li>
-            <li class="news-item">
-              <span class="news-title">Noticia N°2</span>
-              <label class="switch">
-                <input type="checkbox">
-                <span class="slider round"></span>
-              </label>
-            </li>
-            <li class="news-item">
-                <span class="news-title">Noticia N°3</span>
-                <label class="switch">
-                  <input type="checkbox" checked>
-                  <span class="slider round"></span>
-                </label>
-              </li>
-              <li class="news-item">
-                <span class="news-title">Noticia N°4</span>
-                <label class="switch">
-                  <input type="checkbox">
-                  <span class="slider round"></span>
-                </label>
-              </li>
-              <li class="news-item">
-                <span class="news-title">Noticia N°5</span>
-                <label class="switch">
-                  <input type="checkbox" checked>
-                  <span class="slider round"></span>
-                </label>
-              </li>
-              <li class="news-item">
-                <span class="news-title">Noticia N°6</span>
-                <label class="switch">
-                  <input type="checkbox">
-                  <span class="slider round"></span>
-                </label>
-              </li>
           </ul>
     </div>
 
     <div class="form-container">
-        <form>
+        <form class="register-group" #noticiasForm>
             <div class="form-group">
                 <label for="title">Título Principal de la Noticia *</label>
-                <input id="title" type="text" formControlName="title" placeholder="Título de la noticia" required>
+                <input id="title" type="text" placeholder="Título de la noticia"
+                name="title" [(ngModel)]="noticiasData.title" #title="ngModel" required>
             </div>
-
+            
             <div class="form-group">
                 <label for="content">Contenido de la Noticia *</label>
-                <input type="text" class="inputContenido" id="content" formControlName="content" required>
+                <input type="text" class="inputContenido" id="content"
+                name="content" [(ngModel)]="noticiasData.content" #content="ngModel" required>
             </div>
 
             <div class="image-upload">
                 <label for="image1">Imagen 1 *</label>
-                <input id="image1" type="file">
+                <input id="image1" type="file" (change)="onFileSelected($event)" accept="image/*">
             </div>
 
             <div class="form-group">
-                <button type="submit" class="publish-btn">Publicar</button>
+              <label for="expirationDate">Fecha Expiracion *</label>
+              <input id="expirationDate" class="form-control" type="date" placeholder="Título de la noticia"
+              name="expirationDate" [(ngModel)]="noticiasData.expirationDate" #expirationDate="ngModel" required>
+          </div>
+
+            <div class="form-group">
+                <button type="submit" (click)="Public()" class="publish-btn">Publicar</button>
             </div>
         </form>
     </div>

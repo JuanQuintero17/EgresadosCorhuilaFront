@@ -13,6 +13,7 @@ export class PreRegistro {
     ciudadRecidencia: string;
     direccionRecidencia: string;
     telefono: string;
+    fotoPerfil: any;
 
     constructor(primerNombre: string,
         segundoNombre: string,
@@ -26,7 +27,8 @@ export class PreRegistro {
         noIdentificacion: string,
         ciudadRecidencia: string,
         direccionRecidencia: string,
-        telefono: string){
+        telefono: string,
+        fotoPerfil: any){
             this.primerNombre = primerNombre;
             this.segundoNombre = segundoNombre;
             this.primerApellido = primerApellido;
@@ -40,5 +42,6 @@ export class PreRegistro {
             this.ciudadRecidencia = ciudadRecidencia;
             this.direccionRecidencia = direccionRecidencia;
             this.telefono = telefono;
+            this.fotoPerfil = fotoPerfil;
         }
 }

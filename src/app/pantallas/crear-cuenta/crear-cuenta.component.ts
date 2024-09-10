@@ -4,6 +4,7 @@ import { CreateUserDto } from 'src/app/model/create-user-dto';
 import { PreRegistro } from 'src/app/model/pre-registro';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
+import imageCompression from 'browser-image-compression';
 
 @Component({
   selector: 'app-crear-cuenta',
@@ -32,7 +33,8 @@ export class CrearCuentaComponent implements OnInit{
     year:'',
     document:'',
     addres:'',
-    password:''
+    password:'',
+    file: null as number[] | null,
   }
   ngOnInit(): void {
     
@@ -40,6 +42,35 @@ export class CrearCuentaComponent implements OnInit{
 
   togglePasswordVisibility(){
     this.showPassword = !this.showPassword;
+  }
+
+  async onFileSelected(event: any) {
+    const file = event.target.files[0];
+    if (file) {
+      // Configura las opciones de compresión
+      const options = {
+        maxSizeMB: 0.2, // Ajustar a un valor más bajo para más compresión
+        maxWidthOrHeight: 1024, // Reduce las dimensiones para más compresión
+        useWebWorker: true, // Usar Web Worker para compresión en segundo plano
+        initialQuality: 0.4, // Reducir la calidad para más compresión
+        alwaysKeepResolution: false // Permite ajustar la resolución si es necesario
+      };
+
+      try {
+       
+        const compressedFile = await imageCompression(file, options);
+        
+        
+        const reader = new FileReader();
+        reader.onload = () => {
+          const byteArray = new Uint8Array(reader.result as ArrayBuffer);
+          this.registerData.file = Array.from(byteArray); 
+        };
+        reader.readAsArrayBuffer(compressedFile);
+      } catch (error) {
+        console.error('Error al comprimir la imagen:', error);
+      }
+    }
   }
 
   OnRegister(): void{
@@ -82,7 +113,8 @@ export class CrearCuentaComponent implements OnInit{
     this.registerData.document,
     this.registerData.city,
     this.registerData.addres,
-    this.registerData.telephone
+    this.registerData.telephone,
+    this.registerData.file
     );
 
     this.authService.preRegister(dtoPreRegistro).subscribe(

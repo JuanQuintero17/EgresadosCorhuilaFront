@@ -4,7 +4,7 @@
       <div class="form-group">
         <h3>Foto de Perfil </h3>
         <input type="file" class="form-control" id="foto" style="display: none;">
-        <div class="profile-picture"></div>
+        <img [src]="fotoPerfil || 'ruta/a/placeholder.png'" class="profile-picture" alt="Imagen de la noticia">
         <button type="button" class="btn btn-seleccionar button-perfil" onclick="document.getElementById('foto').click()">Insertar Foto</button>
       </div>
     </div>

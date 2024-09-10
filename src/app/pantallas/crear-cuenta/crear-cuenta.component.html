@@ -3,11 +3,8 @@
 
     <div class="left-sidebar">
       <div class="form-group">
-        <input type="file" class="form-control" id="foto" style="display: none;">
+        <input id="image1" type="file" (change)="onFileSelected($event)" accept="image/*" >
         <div class="profile-picture"></div>
-        <button type="button" class="btn btn-seleccionar" onclick="document.getElementById('foto').click()">Insertar
-          Foto
-        </button>
       </div>
     </div>
     <div class="main-content">

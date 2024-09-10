@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,18 +8,11 @@ import { Router } from '@angular/router';
 })
 export class NoticiasEgresadoInfoComponent {
 
+  @Input() noticia: any;
   @Output() close = new EventEmitter<void>();
 
   constructor(private router : Router){}
 
-  noticias = [
-    {
-      titulo: "Noticia 1: Título H2",
-      contenido: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a ex in risus volutpat finibus at tristique lacus.",
-      imagen: "../../../assets/img/admin.jpg"
-    },
-    
-  ];
 
   handleCloseClick() {
     this.close.emit();

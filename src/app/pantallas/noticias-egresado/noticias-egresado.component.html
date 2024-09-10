@@ -4,8 +4,8 @@
     <div class="news-content">
       <h2 class="news-title">{{ noticia.titulo }}</h2>
       <p class="news-description">{{ noticia.contenido }}</p>
-      <button class="news-button" (click)="openModal()">Ver más</button>
+      <button class="news-button" (click)="openModal(noticia)">Ver más</button>
     </div>
   </div>
 </div>
-<app-noticias-egresado-info *ngIf="isModalOpen" (close)="closeModal()"></app-noticias-egresado-info>
+<app-noticias-egresado-info *ngIf="isModalOpen"  [noticia]="selectedNoticia" (close)="closeModal()"></app-noticias-egresado-info>

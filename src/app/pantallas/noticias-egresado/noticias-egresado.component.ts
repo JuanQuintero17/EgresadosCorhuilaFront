@@ -8,9 +8,10 @@ import { NoticiasService } from 'src/app/services/noticias.service';
   styleUrls: ['./noticias-egresado.component.css']
 })
 export class NoticiasEgresadoComponent implements OnInit{
-
+  
   isModalOpen: boolean = false;
   isNoticias: boolean = false;
+  selectedNoticia: any;
 
   constructor(
     private noticiasService: NoticiasService,
@@ -34,24 +35,38 @@ export class NoticiasEgresadoComponent implements OnInit{
     this.noticiasService.listNoticias().subscribe(
       data => {
         console.log(data);
-        if(data.codResponse == 200){
+        if (data.codResponse === 200) {
           this.isNoticias = true;
-          
-          if(Array.isArray(data.listObject) && data.listObject.length > 0){
-            this.noticias = data.listObject[0].map((noticia: { title: any; content: any; }) => ({
-              titulo: noticia.title,
-              contenido: noticia.content,
-              imagen: "../../../assets/img/admin.jpg"
-            }));
+  
+          if (Array.isArray(data.listObject) && data.listObject.length > 0) {
+            this.noticias = data.listObject[0].map((noticia: { title: any; content: any; file: number[]; }) => {
+              // Convertir el array de bytes a una URL de datos
+              const imagenUrl = noticia.file.length ? this.arrayBufferToBase64(noticia.file) : "../../../assets/img/default.jpg";
+  
+              return {
+                titulo: noticia.title,
+                contenido: noticia.content,
+                imagen: imagenUrl
+              };
+            });
           }
         }
-      },error => {
-        console.error("Error al listas noticias")
+      },
+      error => {
+        console.error("Error al listar noticias:", error);
       }
-    )
+    );
   }
 
-  openModal(){
+  private arrayBufferToBase64(buffer: number[]): string {
+    const byteArray = new Uint8Array(buffer);
+    const binary = byteArray.reduce((data, byte) => data + String.fromCharCode(byte), '');
+    const base64 = window.btoa(binary);
+    return `data:image/jpeg;base64,${base64}`; // Ajusta el tipo MIME según el tipo de imagen
+  }
+
+  openModal(noticia: any){
+    this.selectedNoticia = noticia;
     this.isModalOpen = true;
   }
 

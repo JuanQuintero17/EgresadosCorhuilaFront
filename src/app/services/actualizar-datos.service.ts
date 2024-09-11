@@ -13,8 +13,10 @@ export class ActualizarDatosService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public recuperarUsuario(document: number): Observable<any>{
-    const params = new HttpParams().set('doc', document)
+  public recuperarUsuario(document: number, foto: boolean): Observable<any>{
+    const params = new HttpParams()
+      .set('doc', document.toString())
+      .set('foto', foto.toString());
     return this.httpClient.post<any>(this.actualizarDatosURL + 'recuperarUsuarioDoc', null, {params})
   }
 

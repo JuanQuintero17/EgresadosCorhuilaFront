@@ -31,7 +31,7 @@ export class DatosLaboralesComponent implements OnInit{
 
   consultarDatos() {
     const document =  Number(this.tokenService.getDocument())
-    this.actualizarDatos.recuperarUsuario(document).subscribe(
+    this.actualizarDatos.recuperarUsuario(document,false).subscribe(
       data => {
         
         console.log("Formulario 3");
@@ -41,7 +41,7 @@ export class DatosLaboralesComponent implements OnInit{
         this.datosFormulario3.rolEjecuta = data.rolEjecuta;
         this.datosFormulario3.actividadEjecuta = data.actividadEjecuta;
         this.datosFormulario3.tipoContrato = data.tipoContrato;
-        this.datosFormulario3.ejecutaActividad = data.labora;
+        this.datosFormulario3.ejecutaActividad = data.ejecutaActividad;
         this.datosFormulario3.actividadEjecuta = data.actividadEjecuta;
         this.datosFormulario3.nombreEmpresa = data.nombreEmpresa;
         this.datosFormulario3.fechaIngreso = fechaIngreso.toISOString().split('T')[0];
@@ -72,7 +72,7 @@ export class DatosLaboralesComponent implements OnInit{
     const document = Number(this.tokenService.getDocument());
 
 
-    this.actualizarDatos.recuperarUsuario(document).subscribe(
+    this.actualizarDatos.recuperarUsuario(document,false).subscribe(
       dataList => {
         const id = dataList.id;
 
@@ -93,6 +93,7 @@ export class DatosLaboralesComponent implements OnInit{
           form1.telefonoCelular,
           form2.sedeUniversitaria,
           form2.ultimoNivelFormacion,
+          form2.facultad,
           form2.ultimoSemestreCursado,
           form2.graduado,
           form2.fechaGrado,
@@ -109,7 +110,7 @@ export class DatosLaboralesComponent implements OnInit{
           form3.rangoSalario,
           form3.tipoContrato,
           form3.modalidadTrabajo,
-          form3.actividadEjecuta
+          form3.ejecutaActividad
         );
 
         console.log(dtoActualizaDatos);

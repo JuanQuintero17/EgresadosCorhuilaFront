@@ -25,7 +25,7 @@ export class ConfiguracionEgresadoComponent implements OnInit{
 
   consulttarFoto(){
     const document =  Number(this.tokenService.getDocument())
-    this.actualizarDatos.recuperarUsuario(document).subscribe(
+    this.actualizarDatos.recuperarUsuario(document, true).subscribe(
       data => {
         const byteArray = data.fotoPerfil;
 

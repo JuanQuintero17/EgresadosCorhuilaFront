@@ -32,7 +32,7 @@ export class DatosEducacionComponent implements OnInit{
 
   consultarDatos() {
     const document =  Number(this.tokenService.getDocument())
-    this.actualizarDatos.recuperarUsuario(document).subscribe(
+    this.actualizarDatos.recuperarUsuario(document,false).subscribe(
       data => {
         console.log("formulario 2");
         

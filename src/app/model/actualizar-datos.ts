@@ -17,6 +17,7 @@ export class ActualizarDatos{
     telefono: string;
     sedeUniversitaria: string;
     ultimoNivelFormacion: string;
+    facultad: string;
     ultimoSemestre: string;
     graduado: boolean;
     fechaGrado: Date;
@@ -52,6 +53,7 @@ export class ActualizarDatos{
         telefono: string,
         sedeUniversitaria: string,
         ultimoNivelFormacion: string,
+        facultad: string,
         ultimoSemestre: string,
         graduado: boolean,
         fechaGrado: Date,
@@ -85,6 +87,7 @@ export class ActualizarDatos{
             this.telefono = telefono;
             this.sedeUniversitaria = sedeUniversitaria;
             this.ultimoNivelFormacion = ultimoNivelFormacion;
+            this.facultad = facultad;
             this.ultimoSemestre = ultimoSemestre;
             this.graduado = graduado;
             this.fechaGrado = fechaGrado;

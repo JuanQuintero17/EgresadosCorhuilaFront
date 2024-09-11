@@ -1,11 +1,11 @@
 <div class="dashboard-container">
   <div class="top-section">
     <div class="charts-section">
-      <div class="chart-filters">
+      <!-- <div class="chart-filters">
         <button>Semestre II</button>
         <button>Semestre I</button>
         <button>Últimos 6 años</button>
-      </div>
+      </div> -->
       <div class="chart-container">
           <canvas #myChart></canvas>
       </div>
@@ -15,26 +15,16 @@
       <div class="updates-section">
         <div class="updates-header">
           <h3>Últimas Actualizaciones</h3>
-          <button>...</button>
         </div>
-        <div class="update-item">
-          <span>Luis Angel</span>
-          <span>5m</span>
+        <div class="update-item" *ngFor="let egresado of ultimosEgresadosList">
+          <span>{{ egresado }}</span>
+          <span>Hace un momento</span> <!-- Esto es un placeholder, puedes ajustar con datos reales si tienes tiempos específicos -->
         </div>
-        <div class="update-item">
-          <span>Felipe Garzon</span>
-          <span>20m</span>
-        </div>
-        <div class="update-item">
-          <span>Sebastian Quintero</span>
-          <span>2h</span>
-        </div>
-        <button class="show-more">Mostrar más</button>
       </div>
       <div class="total-platform-box">
         <div class="total-info">
           <p>Total Egresados en Plataforma</p>
-          <h2>4.500</h2>
+          <h2>{{ egresadosPitalito + egresadosNeiva}}</h2>
         </div>
       </div>
     </div>
@@ -44,13 +34,13 @@
     <div class="total-box">
       <div class="total-info">
         <p>Total Egresado Pitalito</p>
-        <h2>123.456</h2>
+        <h2>{{ egresadosPitalito }}</h2>
       </div>
     </div>
     <div class="total-box">
       <div class="total-info">
         <p>Total Egresados Neiva</p>
-        <h2>123.456</h2>
+        <h2>{{ egresadosNeiva }}</h2>
       </div>
     </div>
   </div>

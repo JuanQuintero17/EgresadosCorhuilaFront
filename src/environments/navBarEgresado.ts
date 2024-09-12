@@ -14,9 +14,9 @@ export const navbarEgresado = [
         icon: 'fas fa-cog',
         label: 'Configuracion'
     },
-    {
-        routeLink: 'salir',
+    /* {
+        routeLink: 'login',
         icon: 'fas fa-door-open',
         label: 'Salir'
-    },
+    }, */
 ];

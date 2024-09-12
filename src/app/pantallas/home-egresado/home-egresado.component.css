@@ -96,3 +96,50 @@
     color: #1F8943;
     font-weight: bold;
   }
+
+  .navbar {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar li {
+  display: flex;
+  align-items: center;
+}
+
+.navbar a {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 20px;
+  transition: background-color 0.3s;
+}
+
+.navbar a i {
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+.navbar a:hover {
+  background-color: #4caf50; /* Cambia a un color de hover */
+}
+
+.navbar .logout-link a {
+  color: white; /* Mantén el mismo color que los demás enlaces */
+}
+
+.navbar .logout-link a:hover {
+  background-color: #388e3c; /* Color de hover para el botón "Salir" */
+}
+
+.exit {
+  font-size: 20px;
+}

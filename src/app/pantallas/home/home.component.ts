@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { TokenService } from 'src/app/services/token.service';
 import { navbarData } from 'src/environments/navBar';
 
 @Component({
@@ -12,7 +13,11 @@ export class HomeComponent implements OnInit {
   navbarData = navbarData;
   selectedNavItem: any;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private tokenService: TokenService
+
+  ) {}
 
   ngOnInit() {
     this.router.events.subscribe(event => {
@@ -25,5 +30,12 @@ export class HomeComponent implements OnInit {
 
   updateSelectedNavItem(item: any) {
     this.selectedNavItem = item;
+  }
+
+  logout(){
+    console.log("SALIR");
+    
+    this.tokenService.logOut();
+    this.router.navigate(['/admin']);
   }
 }

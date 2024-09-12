@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { TokenService } from 'src/app/services/token.service';
 import { navbarEgresado } from 'src/environments/navBarEgresado';
 
 @Component({
@@ -12,7 +13,11 @@ export class HomeEgresadoComponent {
   navbarEgresado = navbarEgresado;
   selectedNavItem: any;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private tokenService: TokenService
+
+  ) {}
 
   ngOnInit() {
     this.router.events.subscribe(event => {
@@ -25,6 +30,13 @@ export class HomeEgresadoComponent {
 
   updateSelectedNavItem(item: any) {
     this.selectedNavItem = item;
+  }
+
+  logout(){
+    console.log("SALIR");
+    
+    this.tokenService.logOut();
+    this.router.navigate(['/login']);
   }
 
 }

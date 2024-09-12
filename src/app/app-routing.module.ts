@@ -109,6 +109,7 @@ const routes: Routes = [
     path: 'crearCuenta',
     component: CrearCuentaComponent
   },
+  { path: '**', redirectTo: '/login', pathMatch: 'full' }
 
 ];
 

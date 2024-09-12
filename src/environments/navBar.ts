@@ -14,9 +14,9 @@ export const navbarData = [
         icon: 'fas fa-cog',
         label: 'Configuracion'
     },
-    {
+    /* {
         routeLink: 'salir',
         icon: 'fas fa-door-open',
         label: 'Salir'
-    },
+    }, */
 ];

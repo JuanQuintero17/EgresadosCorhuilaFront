@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="additional-options">
-            <a>¿Olvidaste tu contraseña?</a>
+            <a (click)="openModal()">¿Olvidaste tu contraseña?</a>
           </div>
         <button class="button-login" type="submit" (click)="entrar()" >Iniciar Sesión</button>
         <div *ngIf="showError" class="error-message">Credenciales inválidas. Inténtalo de nuevo.</div>

@@ -3,14 +3,15 @@
     <div class="modal-content">
       <div class="modal-header">
         <img src="../../../assets/img/icone-x.png">
-        <h3>Digita el numero de tu documento de<br>identidad registrado en la plataforma, <br> y te enviaremos tu contraseña</h3>
+        <h3>Digita el numero de tu documento de<br>identidad registrado en la plataforma, <br> y te enviaremos tu contraseña al correo</h3>
       </div>
       <div class="form-group">
-        <input type="text" id="username" name="username" placeholder="Numero Identificación" required>
+        <input type="text" id="noIdentificacion" name="noIdentificacion" placeholder="Numero Identificación" 
+        [(ngModel)]="datos.noIdentificacion" #noIdentificacion="ngModel" required>
       </div>
       <div class="modal-footer">
         <div>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Enviar Contraseña</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="enviarPassword()">Enviar Contraseña</button>
         </div>
         <button type="button" class="btn btn-primary" (click)="handleCloseClick()">Iniciar Sesión</button>
       </div>

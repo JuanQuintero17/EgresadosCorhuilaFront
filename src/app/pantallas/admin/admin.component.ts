@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalErrorComponent } from 'src/app/modals/modal-error/modal-error.component';
 import { LoginUserDto } from 'src/app/model/login-user-dto';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
@@ -11,13 +12,17 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class AdminComponent implements OnInit{
 
+  @ViewChild('errorModal') errorModal!:ModalErrorComponent;
+
   showPassword: boolean = false;
+  showError = false;
+  isModalOpen: boolean = false;
+  isModal: boolean = false;
 
   formData = {
     username: '',
     password: ''
   };
-  showError = false;
 
   constructor(
     private authService:AuthService,
@@ -52,6 +57,14 @@ export class AdminComponent implements OnInit{
         console.log('Error al iniciar sesion');
       }
     )
+  }
+
+  openModal(){
+    this.isModalOpen = true;
+  }
+
+  closeModal(){
+    this.isModalOpen = false;
   }
 
 }

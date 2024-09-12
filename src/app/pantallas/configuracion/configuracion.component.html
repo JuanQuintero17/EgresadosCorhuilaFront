@@ -5,36 +5,37 @@
         <h3>Foto de Perfil </h3>
         <input type="file" class="form-control" id="foto" style="display: none;">
         <div class="profile-picture"></div>
-        <button type="button" class="btn btn-seleccionar button-perfil" onclick="document.getElementById('foto').click()">Insertar Foto</button>
-      </div>
+<!--         <button type="button" class="btn btn-seleccionar button-perfil" onclick="document.getElementById('foto').click()">Insertar Foto</button>
+ -->      </div>
     </div>
     <div class="right-section">
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="nombre">Nombre Completo<span class="required"> *</span></label>
         <input type="text" class="form-control" id="nombre">
-      </div>
+      </div> -->
       <div class="form-group">
         <label for="correo">Correo electrónico<span class="required"> *</span></label>
-        <input type="email" class="form-control" id="correo">
+        <input type="email" class="form-control" id="correo"
+        name="correo"  [(ngModel)]="actualizar.email" #correo="ngModel" required>
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="rol">Rol<span class="required"> *</span></label>
         <select class="form-control" id="rol">
           <option value="admin">Administrador</option>
           <option value="usuario">Usuario</option>
         </select>
-      </div>
+      </div> -->
       <div class="form-group">
         <label for="contrasena">Actualizar Contraseña</label>
         <div class="password-input-container">
           <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password"
-                 placeholder="Contraseña" required>
+                 placeholder="Contraseña" [(ngModel)]="actualizar.password"  #password="ngModel" required>
           <span class="password-toggle-icon" (click)="togglePasswordVisibility()">
             <i class="fa" [ngClass]="{'fa-eye-slash': !showPassword, 'fa-eye': showPassword}"></i>
           </span>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary button-conf">Guardar</button>
+      <button type="button" class="btn btn-primary button-conf" (click)="actualizarPassword()">Guardar</button>
     </div>
   </section>
 </form>

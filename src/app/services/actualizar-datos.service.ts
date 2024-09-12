@@ -29,4 +29,10 @@ export class ActualizarDatosService {
   public actualizarPassword( dto: ActualizarPassword): Observable<any>{
     return this.httpClient.put<any>(this.actualizarDatosURL + 'actualizarContraseña', dto)
   }
+
+  public listarAdmin(document: number): Observable<any>{
+    const params = new HttpParams().set('doc', document)
+    return this.httpClient.get<any>(this.actualizarDatosURL + 'listarAdminDoc', {params})
+  }
+  
 }

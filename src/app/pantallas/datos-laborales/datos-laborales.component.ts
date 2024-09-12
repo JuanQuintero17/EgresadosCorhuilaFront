@@ -41,8 +41,7 @@ export class DatosLaboralesComponent implements OnInit{
         this.datosFormulario3.rolEjecuta = data.rolEjecuta;
         this.datosFormulario3.actividadEjecuta = data.actividadEjecuta;
         this.datosFormulario3.tipoContrato = data.tipoContrato;
-        this.datosFormulario3.ejecutaActividad = data.ejecutaActividad;
-        this.datosFormulario3.actividadEjecuta = data.actividadEjecuta;
+        this.datosFormulario3.ejecutaActividad = data.relacionFormacion;
         this.datosFormulario3.nombreEmpresa = data.nombreEmpresa;
         this.datosFormulario3.fechaIngreso = fechaIngreso.toISOString().split('T')[0];
         this.datosFormulario3.rangoSalario = data.rangoSalarial;
@@ -102,7 +101,7 @@ export class DatosLaboralesComponent implements OnInit{
           form2.tituloTrabajoGrado,
           form2.programa,
           form2.tituloObtenido,
-          form3.laboraActualmente,
+          form3.progrlaboraActualmenteama,
           form3.nombreEmpresa,
           form3.rolEjecuta,
           form3.fechaIngreso,

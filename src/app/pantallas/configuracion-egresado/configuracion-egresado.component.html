@@ -5,24 +5,25 @@
         <h3>Foto de Perfil </h3>
         <input type="file" class="form-control" id="foto" style="display: none;">
         <img [src]="fotoPerfil || 'ruta/a/placeholder.png'" class="profile-picture" alt="Imagen de la noticia">
-        <button type="button" class="btn btn-seleccionar button-perfil" onclick="document.getElementById('foto').click()">Insertar Foto</button>
-      </div>
+<!--         <button type="button" class="btn btn-seleccionar button-perfil" onclick="document.getElementById('foto').click()">Insertar Foto</button>
+ -->      </div>
     </div>
     <div class="right-section">
       <div class="form-group">
         <label for="correo">Correo electrónico<span class="required"> *</span></label>
-        <input type="email" class="form-control" id="correo">
+        <input type="email" class="form-control" id="correo"  
+        name="correo"  [(ngModel)]="actualizar.email" #correo="ngModel" required>
       </div>
       <div class="form-group">
         <label for="contrasena">Actualizar Contraseña</label>
         <div class="password-input-container">
-          <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password" required>
+          <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password" [(ngModel)]="actualizar.password"  #password="ngModel" required>
           <span class="password-toggle-icon" (click)="togglePasswordVisibility()">
             <i class="fa" [ngClass]="{'fa-eye-slash': !showPassword, 'fa-eye': showPassword}"></i>
           </span>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary button-conf">Guardar</button>
+      <button type="button" class="btn btn-primary button-conf" (click)="actualizarPassword()" >Guardar</button>
     </div>
   </section>
 </form>

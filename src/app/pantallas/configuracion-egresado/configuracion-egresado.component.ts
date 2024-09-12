@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActualizarPassword } from 'src/app/model/actualizar-password';
 import { ActualizarDatosService } from 'src/app/services/actualizar-datos.service';
 import { TokenService } from 'src/app/services/token.service';
 
@@ -12,7 +13,7 @@ export class ConfiguracionEgresadoComponent implements OnInit{
   showPassword: boolean = false;
   fotoPerfil: any
   constructor(
-    private actualizarDatos: ActualizarDatosService,
+    private actualizarDatosService: ActualizarDatosService,
     private tokenService: TokenService
   ){
 
@@ -23,12 +24,19 @@ export class ConfiguracionEgresadoComponent implements OnInit{
     
   }
 
+  actualizar= {
+      password : '',
+      email: '',
+      identificacion: ''
+  }
+
   consulttarFoto(){
     const document =  Number(this.tokenService.getDocument())
-    this.actualizarDatos.recuperarUsuario(document, true).subscribe(
+    this.actualizarDatosService.recuperarUsuario(document, true).subscribe(
       data => {
         const byteArray = data.fotoPerfil;
-
+        this.actualizar.identificacion = data.noIdentificacion;
+        this.actualizar.email = data.emailInstitucional;
       if (byteArray) {
         this.fotoPerfil = this.arrayBufferToBase64(byteArray);
       } else {
@@ -39,6 +47,26 @@ export class ConfiguracionEgresadoComponent implements OnInit{
         
       }
     )
+  }
+
+  actualizarPassword(){
+
+    const dtoActualizarPassword = new ActualizarPassword(
+      this.actualizar.identificacion,
+      this.actualizar.password,
+      this.actualizar.email
+    )
+
+    console.log(dtoActualizarPassword);
+    
+
+    this.actualizarDatosService.actualizarPassword(dtoActualizarPassword).subscribe(
+      data => {
+        console.log(data);
+        this.actualizar.password = '';
+      }
+    ) 
+
   }
 
   private arrayBufferToBase64(buffer: number[]): string {

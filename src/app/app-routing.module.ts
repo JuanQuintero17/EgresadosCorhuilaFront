@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-    canActivate: [LoginGuard]
+    canActivate: [LoginGuard],
   },
   {
     path: 'admin',
@@ -37,6 +37,7 @@ const routes: Routes = [
     path: 'home',
     component: HomeComponent,
     canActivate: [HomeAdminGuard],
+    data: { expectedRoles : ['admin']},
     children: [
       {
         path: '',
@@ -64,10 +65,11 @@ const routes: Routes = [
     path: 'homeEgresado',
     component: HomeEgresadoComponent,
     canActivate: [HomeEgresadoGuard],
+    data: { expectedRoles : ['egresado']},
     children: [
       {
         path: '',
-        component: NoticiasEgresadoComponent
+        component: NoticiasEgresadoComponent,
       },
       {
         path: 'noticiasEgresado',

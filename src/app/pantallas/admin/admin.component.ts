@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginUserDto } from 'src/app/model/login-user-dto';
 import { AuthService } from 'src/app/services/auth.service';
@@ -9,7 +9,7 @@ import { TokenService } from 'src/app/services/token.service';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent {
+export class AdminComponent implements OnInit{
 
   showPassword: boolean = false;
 
@@ -24,6 +24,10 @@ export class AdminComponent {
     private tokenService:TokenService,
     private router:Router
   ){}
+
+  ngOnInit(): void {
+    
+  }
 
   login(): void {
     if (this.formData.username === 'usuario' && this.formData.password === 'contraseña') {

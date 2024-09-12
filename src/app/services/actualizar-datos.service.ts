@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ActualizarDatos } from '../model/actualizar-datos';
+import { ActualizarPassword } from '../model/actualizar-password';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +24,9 @@ export class ActualizarDatosService {
   public actualizarUsuario(document: number, dto: ActualizarDatos): Observable<any>{
     const params = new HttpParams().set('doc', document)
     return this.httpClient.post<any>(this.actualizarDatosURL + 'actualizarUsuario', dto, {params})
+  }
+
+  public actualizarPassword( dto: ActualizarPassword): Observable<any>{
+    return this.httpClient.put<any>(this.actualizarDatosURL + 'actualizarContraseña', dto)
   }
 }

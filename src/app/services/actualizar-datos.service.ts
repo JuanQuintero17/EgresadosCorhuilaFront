@@ -34,5 +34,9 @@ export class ActualizarDatosService {
     const params = new HttpParams().set('doc', document)
     return this.httpClient.get<any>(this.actualizarDatosURL + 'listarAdminDoc', {params})
   }
+
+  public listarTodos(): Observable<any>{
+    return this.httpClient.get<any>(this.actualizarDatosURL + 'listar')
+  }
   
 }

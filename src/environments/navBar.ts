@@ -5,6 +5,11 @@ export const navbarData = [
         label: 'Dashboard'
     },
     {
+        routeLink: 'reporte',
+        icon: 'fas fa-file-invoice',
+        label: 'Reporte'
+    },
+    {
         routeLink: 'noticias',
         icon: 'fas fa-bullhorn',
         label: 'Noticias'
@@ -13,10 +18,5 @@ export const navbarData = [
         routeLink: 'configuracion',
         icon: 'fas fa-cog',
         label: 'Configuracion'
-    },
-    /* {
-        routeLink: 'salir',
-        icon: 'fas fa-door-open',
-        label: 'Salir'
-    }, */
+    }
 ];

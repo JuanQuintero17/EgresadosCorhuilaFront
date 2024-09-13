@@ -1,1 +1,78 @@
-<p>reporte works!</p>
+<div class="report-container">
+    <div class="header">
+      <div class="header-left">
+        <h2>Reporte</h2>
+        <input type="text" placeholder="Buscar..." class="search-input" />
+      </div>
+    </div>
+  
+    <div class="content">
+      <div class="table-header">
+        <label>
+          <input type="checkbox" [(ngModel)]="selectAll" (change)="toggleSelectAll()"> Seleccionar Todo
+        </label>
+        <div class="column-headers">
+          <span>Correo Personal</span>
+          <span>Sede</span>
+          <span>Fecha Ingreso</span>
+          <span>Fecha Terminación</span>
+          <span>Facultad</span>
+          <span>Programa</span>
+        </div>
+      </div>
+      <div class="table-content">
+        <div class="row" *ngFor="let item of items">
+          <div class="row-left">
+            <input type="checkbox" [(ngModel)]="item.selected" (change)="checkSelection()">
+            <img [src]="item.img" alt="user-image" class="user-avatar" />
+            <div class="user-info-container">
+              <span class="user-name">{{ item.name }}</span>
+              <span class="user-time">{{ item.timeAgo }}</span>
+            </div>
+            <button class="details-button">></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="footer">
+      <div class="footer-buttons">
+        <button class="icon-button">📥</button>
+        <button class="icon-button" (click)="openModal()">✉️</button>
+      </div>
+      <div class="pagination">
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal para Enviar Correo -->
+<div *ngIf="isModalOpen" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Enviar Correo</h2>
+      <form>
+        <div class="form-group">
+          <label for="asunto">Asunto:</label>
+          <input type="text" id="asunto" [(ngModel)]="asunto" name="asunto" placeholder="Escribe el asunto">
+        </div>
+  
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <textarea class="desc" id="descripcion" [(ngModel)]="descripcion" name="descripcion" placeholder="Escribe la descripción"></textarea>
+        </div>
+  
+        <div class="form-group">
+          <label for="archivo">Adjuntar Archivos:</label>
+          <input type="file" (change)="onFileSelected($event)" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg">
+        </div>
+  
+        <button type="button" class="button-modal" (click)="enviarCorreo()">Enviar</button>
+      </form>
+    </div>
+  </div>
+  

@@ -28,6 +28,10 @@ import { DatosLaboralesComponent } from './pantallas/datos-laborales/datos-labor
 import { NoticiasEgresadoInfoComponent } from './pantallas/noticias-egresado-info/noticias-egresado-info.component';
 import { UsersInterceptor } from './interceptors/users.interceptor';
 import { NoticiasComponent } from './pantallas/noticias/noticias.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @NgModule({
@@ -51,7 +55,7 @@ import { NoticiasComponent } from './pantallas/noticias/noticias.component';
     DatosEducacionComponent,
     DatosLaboralesComponent,
     NoticiasEgresadoInfoComponent,
-    NoticiasComponent
+    NoticiasComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +65,10 @@ import { NoticiasComponent } from './pantallas/noticias/noticias.component';
     FormsModule,
     MatCardModule,
     MatTableModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
     NgxUiLoaderHttpModule.forRoot({
       showForeground:true
     }),

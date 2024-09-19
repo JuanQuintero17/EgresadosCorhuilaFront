@@ -30,6 +30,18 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
+    position: relative;
+}
+
+.text-danger {
+    color: red;
+    font-size: 0.875em;
+    height: 15px;
+    margin-top: 5px;
+}
+
+input.ng-invalid.ng-touched, .form-control.ng-invalid.ng-touched {
+    border-color: red;
 }
 
 .cuest-left,

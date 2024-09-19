@@ -3,52 +3,109 @@
     <div class="cuestionario">
         <div class="cuest">
             <div class="cuest-left">
-                <div class="form-group1">
-                  <label for="nombre">Sede Universitaria<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="sedeUniversitaria" name="sedeUniversitaria" [(ngModel)]="datosFormulario2.sedeUniversitaria">
+
+              <div class="form-group1">
+                <label for="sedeUniversitaria">Sede Universitaria<span class="required"> *</span></label>
+                <input type="text" class="form-control" id="sedeUniversitaria" name="sedeUniversitaria" 
+                       [(ngModel)]="datosFormulario2.sedeUniversitaria" required #sedeUniversitaria="ngModel">
+                <div *ngIf="sedeUniversitaria.invalid && (sedeUniversitaria.dirty || sedeUniversitaria.touched)" class="text-danger">
+                  La sede universitaria es obligatoria.
                 </div>
-                <div class="form-group1">
-                  <label for="nombre">Facultad<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="facultad" name="facultad" [(ngModel)]="datosFormulario2.facultad">
+              </div>
+
+              <div class="form-group1">
+                <label for="facultad">Facultad<span class="required"> *</span></label>
+                <input type="text" class="form-control" id="facultad" name="facultad" 
+                       [(ngModel)]="datosFormulario2.facultad" required #facultad="ngModel">
+                <div *ngIf="facultad.invalid && (facultad.dirty || facultad.touched)" class="text-danger">
+                  La facultad es obligatoria.
                 </div>
-                <div class="form-group1">
-                  <label for="nombre">Ultimo Semestre Cursado<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="ultimoSemestreCursado" name="ultimoSemestreCursado" [(ngModel)]="datosFormulario2.ultimoSemestreCursado">
+              </div>
+
+              <div class="form-group1">
+                <label for="ultimoSemestreCursado">Último Semestre Cursado<span class="required"> *</span></label>
+                <input type="text" class="form-control" id="ultimoSemestreCursado" name="ultimoSemestreCursado" 
+                       [(ngModel)]="datosFormulario2.ultimoSemestreCursado" required #ultimoSemestreCursado="ngModel">
+                <div *ngIf="ultimoSemestreCursado.invalid && (ultimoSemestreCursado.dirty || ultimoSemestreCursado.touched)" class="text-danger">
+                  El último semestre cursado es obligatorio.
                 </div>
-                <div class="form-group1">
-                  <label for="nombre">Fecha de Grado<span class="required"> *</span></label>
-                  <input type="date" class="form-control" id="fechaGrado" name="fechaGrado" [(ngModel)]="datosFormulario2.fechaGrado">
+              </div>
+
+              <div class="form-group1">
+                <label for="fechaGrado">Fecha de Grado<span class="required"> *</span></label>
+                <input type="date" class="form-control" id="fechaGrado" name="fechaGrado" 
+                       [(ngModel)]="datosFormulario2.fechaGrado" required #fechaGrado="ngModel">
+                <div *ngIf="fechaGrado.invalid && (fechaGrado.dirty || fechaGrado.touched)" class="text-danger">
+                  La fecha de grado es obligatoria.
                 </div>
-                <div class="form-group1">
-                  <label for="nombre">Calificación Obtenida<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="calificacionObtenida" name="calificacionObtenida" [(ngModel)]="datosFormulario2.calificacionObtenida">
+              </div>
+
+              <div class="form-group1">
+                <label for="calificacionObtenida">Calificación Obtenida<span class="required"> *</span></label>
+                <input type="text" class="form-control" id="calificacionObtenida" name="calificacionObtenida" 
+                       [(ngModel)]="datosFormulario2.calificacionObtenida" required #calificacionObtenida="ngModel">
+                <div *ngIf="calificacionObtenida.invalid && (calificacionObtenida.dirty || calificacionObtenida.touched)" class="text-danger">
+                  La calificación obtenida es obligatoria.
                 </div>
-                <div class="form-group1">
-                  <label for="nombre">Titulo Obtenido<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="tituloObtenido" name="tituloObtenido" [(ngModel)]="datosFormulario2.tituloObtenido">
+              </div>
+
+              <div class="form-group1">
+                <label for="tituloObtenido">Título Obtenido<span class="required"> *</span></label>
+                <input type="text" class="form-control" id="tituloObtenido" name="tituloObtenido" 
+                       [(ngModel)]="datosFormulario2.tituloObtenido" required #tituloObtenido="ngModel">
+                <div *ngIf="tituloObtenido.invalid && (tituloObtenido.dirty || tituloObtenido.touched)" class="text-danger">
+                  El título obtenido es obligatorio.
                 </div>
+              </div>
+
             </div>
             <div class="cuest-rigth">
-                <div class="form-group1">
-                  <label for="correo">Ultimo nivel de Formación<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="ultimoNivelFormacion" name="ultimoNivelFormacion" [(ngModel)]="datosFormulario2.ultimoNivelFormacion">
+
+              <div class="form-group1">
+                <label for="ultimoNivelFormacion">Último Nivel de Formación<span class="required"> *</span></label>
+                <input type="text" class="form-control" id="ultimoNivelFormacion" name="ultimoNivelFormacion" 
+                       [(ngModel)]="datosFormulario2.ultimoNivelFormacion" required #ultimoNivelFormacion="ngModel">
+                <div *ngIf="ultimoNivelFormacion.invalid && (ultimoNivelFormacion.dirty || ultimoNivelFormacion.touched)" class="text-danger">
+                  El último nivel de formación es obligatorio.
                 </div>
-                <div class="form-group1">
-                  <label for="correo">Programa<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="programa" name="programa" [(ngModel)]="datosFormulario2.programa">
+              </div>
+
+              <div class="form-group1">
+                <label for="programa">Programa<span class="required"> *</span></label>
+                <input type="text" class="form-control" id="programa" name="programa" 
+                       [(ngModel)]="datosFormulario2.programa" required #programa="ngModel">
+                <div *ngIf="programa.invalid && (programa.dirty || programa.touched)" class="text-danger">
+                  El programa es obligatorio.
                 </div>
-                <div class="form-group1">
-                  <label for="correo">Graduado ?<span class="required"> *</span></label>
-                  <input type="checkbox" class="form-control" id="graduado" name="graduado" [(ngModel)]="datosFormulario2.graduado">
+              </div>
+
+              <div class="form-group1">
+                <label for="graduado">Graduado ?<span class="required"> *</span></label>
+                <input type="checkbox" class="form-control" id="graduado" name="graduado" 
+                       [(ngModel)]="datosFormulario2.graduado" required #graduado="ngModel">
+                <div *ngIf="graduado.invalid && (graduado.dirty || graduado.touched)" class="text-danger">
+                  Este campo es obligatorio.
                 </div>
-                <div class="form-group1">
-                  <label for="correo">Modalidad de Grado<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="modalidadGrado" name="modalidadGrado" [(ngModel)]="datosFormulario2.modalidadGrado">
+              </div>
+
+              <div class="form-group1">
+                <label for="modalidadGrado">Modalidad de Grado<span class="required"> *</span></label>
+                <input type="text" class="form-control" id="modalidadGrado" name="modalidadGrado" 
+                       [(ngModel)]="datosFormulario2.modalidadGrado" required #modalidadGrado="ngModel">
+                <div *ngIf="modalidadGrado.invalid && (modalidadGrado.dirty || modalidadGrado.touched)" class="text-danger">
+                  La modalidad de grado es obligatoria.
                 </div>
-                <div class="form-group1">
-                  <label for="correo">Titulo trabajo de Grado<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="tituloTrabajoGrado" name="tituloTrabajoGrado" [(ngModel)]="datosFormulario2.tituloTrabajoGrado">
+              </div>
+
+              <div class="form-group1">
+                <label for="tituloTrabajoGrado">Título Trabajo de Grado<span class="required"> *</span></label>
+                <input type="text" class="form-control" id="tituloTrabajoGrado" name="tituloTrabajoGrado" 
+                       [(ngModel)]="datosFormulario2.tituloTrabajoGrado" required #tituloTrabajoGrado="ngModel">
+                <div *ngIf="tituloTrabajoGrado.invalid && (tituloTrabajoGrado.dirty || tituloTrabajoGrado.touched)" class="text-danger">
+                  El título del trabajo de grado es obligatorio.
                 </div>
+              </div>
+
             </div>
         </div>
     </div>

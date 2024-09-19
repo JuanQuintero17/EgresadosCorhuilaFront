@@ -4,42 +4,99 @@
         <div class="cuest">
             <div class="cuest-left">
                 <div class="form-group1">
-                  <label for="nombre">Labora Actualmente<span class="required"> *</span></label>
-                  <input type="checkbox" class="form-control" id="laboraActualmente" name="laboraActualmente" [(ngModel)]="datosFormulario3.progrlaboraActualmenteama">
+                  <label for="laboraActualmente">Labora Actualmente<span class="required"> *</span></label>
+                  <input type="checkbox" class="form-control" id="laboraActualmente" name="laboraActualmente" 
+                         [(ngModel)]="datosFormulario3.laboraActualmente" (change)="onLaboraChange()">
                 </div>
+
                 <div class="form-group1">
-                  <label for="nombre">Rol que ejecuta<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="rolEjecuta" name="rolEjecuta" [(ngModel)]="datosFormulario3.rolEjecuta">
+                  <label for="rolEjecuta">Rol que ejecuta<span class="required" *ngIf="datosFormulario3.laboraActualmente"> *</span></label>
+                  <input type="text" class="form-control" id="rolEjecuta" name="rolEjecuta" 
+                         [(ngModel)]="datosFormulario3.rolEjecuta" 
+                         [disabled]="!datosFormulario3.laboraActualmente" 
+                         [required]="datosFormulario3.laboraActualmente" #rolEjecuta="ngModel">
+                  <div *ngIf="rolEjecuta.invalid && rolEjecuta.touched && datosFormulario3.laboraActualmente" class="text-danger">
+                    El rol que ejecuta es obligatorio.
+                  </div>
                 </div>
+
                 <div class="form-group1">
-                  <label for="nombre">Actividades que ejecuta<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="actividadEjecuta" name="actividadEjecuta" [(ngModel)]="datosFormulario3.actividadEjecuta">
+                  <label for="actividadEjecuta">Actividades que ejecuta<span class="required" *ngIf="datosFormulario3.laboraActualmente"> *</span></label>
+                  <input type="text" class="form-control" id="actividadEjecuta" name="actividadEjecuta" 
+                         [(ngModel)]="datosFormulario3.actividadEjecuta" 
+                         [disabled]="!datosFormulario3.laboraActualmente" 
+                         [required]="datosFormulario3.laboraActualmente" #actividadEjecuta="ngModel">
+                  <div *ngIf="actividadEjecuta.invalid && actividadEjecuta.touched && datosFormulario3.laboraActualmente" class="text-danger">
+                    Las actividades que ejecuta son obligatorias.
+                  </div>
                 </div>
+
                 <div class="form-group1">
-                  <label for="nombre">Tipo de Contrato<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="tipoContrato" name="tipoContrato" [(ngModel)]="datosFormulario3.tipoContrato">
+                  <label for="tipoContrato">Tipo de Contrato<span class="required" *ngIf="datosFormulario3.laboraActualmente"> *</span></label>
+                  <input type="text" class="form-control" id="tipoContrato" name="tipoContrato" 
+                         [(ngModel)]="datosFormulario3.tipoContrato" 
+                         [disabled]="!datosFormulario3.laboraActualmente" 
+                         [required]="datosFormulario3.laboraActualmente" #tipoContrato="ngModel">
+                  <div *ngIf="tipoContrato.invalid && tipoContrato.touched && datosFormulario3.laboraActualmente" class="text-danger">
+                    El tipo de contrato es obligatorio.
+                  </div>
                 </div>
+
                 <div class="form-group1">
-                  <label for="nombre">Ejecuta actividades relacionadas con <br>la Formacion en Curso o titulada<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="ejecutaActividad" name="ejecutaActividad" [(ngModel)]="datosFormulario3.ejecutaActividad">
+                  <label for="ejecutaActividad">Ejecuta actividades relacionadas con la Formación<span class="required" *ngIf="datosFormulario3.laboraActualmente"> *</span></label>
+                  <input type="text" class="form-control" id="ejecutaActividad" name="ejecutaActividad" 
+                         [(ngModel)]="datosFormulario3.ejecutaActividad" 
+                         [disabled]="!datosFormulario3.laboraActualmente" 
+                         [required]="datosFormulario3.laboraActualmente" #ejecutaActividad="ngModel">
+                  <div *ngIf="ejecutaActividad.invalid && ejecutaActividad.touched && datosFormulario3.laboraActualmente" class="text-danger">
+                    Este campo es obligatorio.
+                  </div>
                 </div>
             </div>
+
             <div class="cuest-rigth">
                 <div class="form-group1">
-                  <label for="correo">Nombre de la Empresa<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="nombreEmpresa" name="nombreEmpresa" [(ngModel)]="datosFormulario3.nombreEmpresa">
+                  <label for="nombreEmpresa">Nombre de la Empresa<span class="required" *ngIf="datosFormulario3.laboraActualmente"> *</span></label>
+                  <input type="text" class="form-control" id="nombreEmpresa" name="nombreEmpresa" 
+                         [(ngModel)]="datosFormulario3.nombreEmpresa" 
+                         [disabled]="!datosFormulario3.laboraActualmente" 
+                         [required]="datosFormulario3.laboraActualmente" #nombreEmpresa="ngModel">
+                  <div *ngIf="nombreEmpresa.invalid && nombreEmpresa.touched && datosFormulario3.laboraActualmente" class="text-danger">
+                    El nombre de la empresa es obligatorio.
+                  </div>
                 </div>
+
                 <div class="form-group1">
-                  <label for="correo">Fecha de Ingreso<span class="required"> *</span></label>
-                  <input type="date" class="form-control" id="fechaIngreso" name="fechaIngreso" [(ngModel)]="datosFormulario3.fechaIngreso">
+                  <label for="fechaIngreso">Fecha de Ingreso<span class="required" *ngIf="datosFormulario3.laboraActualmente"> *</span></label>
+                  <input type="date" class="form-control" id="fechaIngreso" name="fechaIngreso" 
+                         [(ngModel)]="datosFormulario3.fechaIngreso" 
+                         [disabled]="!datosFormulario3.laboraActualmente" 
+                         [required]="datosFormulario3.laboraActualmente" #fechaIngreso="ngModel">
+                  <div *ngIf="fechaIngreso.invalid && fechaIngreso.touched && datosFormulario3.laboraActualmente" class="text-danger">
+                    La fecha de ingreso es obligatoria.
+                  </div>
                 </div>
+
                 <div class="form-group1">
-                  <label for="correo">Rango Salario ?<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="rangoSalario" name="rangoSalario" [(ngModel)]="datosFormulario3.rangoSalario">
+                  <label for="rangoSalario">Rango Salario<span class="required" *ngIf="datosFormulario3.laboraActualmente"> *</span></label>
+                  <input type="text" class="form-control" id="rangoSalario" name="rangoSalario" 
+                         [(ngModel)]="datosFormulario3.rangoSalario" 
+                         [disabled]="!datosFormulario3.laboraActualmente" 
+                         [required]="datosFormulario3.laboraActualmente" #rangoSalario="ngModel">
+                  <div *ngIf="rangoSalario.invalid && rangoSalario.touched && datosFormulario3.laboraActualmente" class="text-danger">
+                    El rango salarial es obligatorio.
+                  </div>
                 </div>
+
                 <div class="form-group1">
-                  <label for="correo">Modalidad de Trabajo<span class="required"> *</span></label>
-                  <input type="text" class="form-control" id="modalidadTrabajo" name="modalidadTrabajo" [(ngModel)]="datosFormulario3.modalidadTrabajo">
+                  <label for="modalidadTrabajo">Modalidad de Trabajo<span class="required" *ngIf="datosFormulario3.laboraActualmente"> *</span></label>
+                  <input type="text" class="form-control" id="modalidadTrabajo" name="modalidadTrabajo" 
+                         [(ngModel)]="datosFormulario3.modalidadTrabajo" 
+                         [disabled]="!datosFormulario3.laboraActualmente" 
+                         [required]="datosFormulario3.laboraActualmente" #modalidadTrabajo="ngModel">
+                  <div *ngIf="modalidadTrabajo.invalid && modalidadTrabajo.touched && datosFormulario3.laboraActualmente" class="text-danger">
+                    La modalidad de trabajo es obligatoria.
+                  </div>
                 </div>
             </div>
         </div>

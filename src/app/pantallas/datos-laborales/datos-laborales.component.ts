@@ -12,7 +12,9 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class DatosLaboralesComponent implements OnInit{
 
-  datosFormulario3: any = {};
+  datosFormulario3: any = {
+    laboraActualmente: false, 
+  };
 
   constructor(
     private formularioService : FormularioService, 
@@ -54,6 +56,19 @@ export class DatosLaboralesComponent implements OnInit{
 
     )
     this.formularioService.actualizarDatosFormulario3(this.datosFormulario3);
+  }
+
+  onLaboraChange(): void {
+    if (!this.datosFormulario3.laboraActualmente) {
+      this.datosFormulario3.rolEjecuta = '';
+      this.datosFormulario3.actividadEjecuta = '';
+      this.datosFormulario3.tipoContrato = '';
+      this.datosFormulario3.ejecutaActividad = '';
+      this.datosFormulario3.nombreEmpresa = '';
+      this.datosFormulario3.fechaIngreso = '';
+      this.datosFormulario3.rangoSalario = '';
+      this.datosFormulario3.modalidadTrabajo = '';
+    }
   }
 
   guardarDatos() {

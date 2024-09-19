@@ -36,7 +36,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
-    canActivate: [HomeAdminGuard],
+    //canActivate: [HomeAdminGuard],
     data: { expectedRoles : ['admin']},
     children: [
       {
@@ -64,7 +64,7 @@ const routes: Routes = [
   {
     path: 'homeEgresado',
     component: HomeEgresadoComponent,
-    canActivate: [HomeEgresadoGuard],
+    //canActivate: [HomeEgresadoGuard],
     data: { expectedRoles : ['egresado']},
     children: [
       {

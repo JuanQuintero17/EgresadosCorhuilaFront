@@ -12,28 +12,30 @@
             </li>
           </ul>
     </div>
+    <app-modal-error [message]="alertMessage" [visible]="isVisible" [icon]="icon"></app-modal-error>
+
 
     <div class="form-container">
         <form class="register-group" #noticiasForm>
             <div class="form-group">
-                <label for="title">Título Principal de la Noticia *</label>
+                <label for="title">Título Principal de la Noticia </label>
                 <input id="title" type="text" placeholder="Título de la noticia"
                 name="title" [(ngModel)]="noticiasData.title" #title="ngModel" required>
             </div>
             
             <div class="form-group">
-                <label for="content">Contenido de la Noticia *</label>
+                <label for="content">Contenido de la Noticia </label>
                 <input type="text" class="inputContenido" id="content"
                 name="content" [(ngModel)]="noticiasData.content" #content="ngModel" required>
             </div>
 
             <div class="image-upload">
-                <label for="image1">Imagen 1 *</label>
+                <label for="image1">Imagen 1 </label>
                 <input id="image1" type="file" (change)="onFileSelected($event)" accept="image/*">
             </div>
 
-            <div class="form-group">
-              <label for="expirationDate">Fecha Expiracion *</label>
+            <div class="form-group1">
+              <label for="expirationDate">Fecha Expiracion</label>
               <input id="expirationDate" class="form-control" type="date" placeholder="Título de la noticia"
               name="expirationDate" [(ngModel)]="noticiasData.expirationDate" #expirationDate="ngModel" required>
           </div>

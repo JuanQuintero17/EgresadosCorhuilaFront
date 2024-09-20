@@ -6,6 +6,7 @@
           <h1>Bienvenido<br>Egresado</h1>
           <img src="../../assets/img/corhuila.png">
       </div>
+      <app-modal-error [message]="alertMessage" [visible]="isVisible" [icon]="icon"></app-modal-error>
       <div class="form-group">
           <input type="text" id="username" name="username" placeholder="Numero Identificación" 
                  [(ngModel)]="formData.username" #username="ngModel" required>

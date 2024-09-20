@@ -12,6 +12,9 @@ export class NoticiasEgresadoComponent implements OnInit{
   isModalOpen: boolean = false;
   isNoticias: boolean = false;
   selectedNoticia: any;
+  alertMessage: string = ''; // Inicialmente vacío
+  isVisible: boolean = false;
+  icon: string = '';
 
   constructor(
     private noticiasService: NoticiasService,
@@ -35,6 +38,9 @@ export class NoticiasEgresadoComponent implements OnInit{
     this.noticiasService.listNoticias().subscribe(
       data => {
         console.log(data);
+        this.alertMessage = data.message;
+        this.isVisible = true;
+        this.icon = 'fas fa-check-circle';
         if (data.codResponse === 200) {
           this.isNoticias = true;
   
@@ -51,6 +57,7 @@ export class NoticiasEgresadoComponent implements OnInit{
             });
           }
         }
+        
       },
       error => {
         console.error("Error al listar noticias:", error);

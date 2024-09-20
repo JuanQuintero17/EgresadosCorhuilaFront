@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit{
   showError = false;
   isModalOpen: boolean = false;
   isModal: boolean = false;
+  alertMessage: string = ''; // Inicialmente vacío
+  isVisible: boolean = false;
+  icon: string = '';
 
   formData = {
     username: '',
@@ -66,7 +69,10 @@ export class LoginComponent implements OnInit{
         this.router.navigate(['/homeEgresado/noticiasEgresado']);
       },
       err => {
-        console.log('Error al iniciar sesion');        
+        console.log(err);
+        this.alertMessage = err.error.message;
+        this.isVisible = true;
+        this.icon = 'fas fa-check-circle';       
       }
     )
   }

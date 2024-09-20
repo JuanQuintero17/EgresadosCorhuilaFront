@@ -20,6 +20,9 @@ export class CrearCuentaComponent implements OnInit{
   ){}
 
   showPassword: boolean = false;
+  alertMessage: string = ''; // Inicialmente vacío
+  isVisible: boolean = false;
+  icon: string = '';
 
   registerData = {
     name:'',
@@ -47,13 +50,12 @@ export class CrearCuentaComponent implements OnInit{
   async onFileSelected(event: any) {
     const file = event.target.files[0];
     if (file) {
-      // Configura las opciones de compresión
       const options = {
-        maxSizeMB: 0.2, // Ajustar a un valor más bajo para más compresión
-        maxWidthOrHeight: 1024, // Reduce las dimensiones para más compresión
-        useWebWorker: true, // Usar Web Worker para compresión en segundo plano
-        initialQuality: 0.4, // Reducir la calidad para más compresión
-        alwaysKeepResolution: false // Permite ajustar la resolución si es necesario
+        maxSizeMB: 0.2, 
+        maxWidthOrHeight: 1024, 
+        useWebWorker: true,
+        initialQuality: 0.4,
+        alwaysKeepResolution: false 
       };
 
       try {
@@ -79,13 +81,17 @@ export class CrearCuentaComponent implements OnInit{
     this.authService.register(dto).subscribe(
       data => {
         console.log("Registro exitoso");
+        console.log(data);
+        
         this.preRegister();
-        this.router.navigate(['/login']);
+        
         
       },
       err => {
         console.log(err.error.message);
-        
+        this.alertMessage = err.error.message;
+        this.isVisible = true;
+        this.icon = 'fas fa-check-circle';
       }
     );
   }
@@ -120,7 +126,10 @@ export class CrearCuentaComponent implements OnInit{
     this.authService.preRegister(dtoPreRegistro).subscribe(
       data => {
         console.log("Pre Registro echo exitosamente");
-        
+        this.router.navigate(['/login']);
+        this.alertMessage = data.message;
+        this.isVisible = true;
+        this.icon = 'fas fa-check-circle';
       },err => {
         console.log(err.error.message);
         

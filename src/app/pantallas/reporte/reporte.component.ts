@@ -12,12 +12,16 @@ import { ReporteService } from 'src/app/services/reporte.service';
 export class ReporteComponent implements OnInit{
 
   items: Egresado[] = [];
-  archivosSeleccionados: string = ''; // Este contendrá la cadena base64
-  nameFile: string = ''; // Aquí se guardará el nombre del archivo
+  archivosSeleccionados: string = '';
+  nameFile: string = '';
   selectAll = false;
   isModalOpen = false;
   asunto: string = '';
   descripcion: string = '';
+
+  alertMessage: string = ''; // Inicialmente vacío
+  isVisible: boolean = false;
+  icon: string = '';
   
 
   constructor(
@@ -36,8 +40,8 @@ export class ReporteComponent implements OnInit{
           this.items = response.listObject[0].map((egresado: any) => ({
             id: egresado.id || egresado.id,
             name: `${egresado.primerNombre} ${egresado.segundoNombre || ''} ${egresado.primerApellido} ${egresado.segundoApellido || ''}`.trim(),
-            img: 'ruta-a-imagen', // Ajusta para usar la imagen real si es necesario
-            timeAgo: '1 d', // Puedes ajustar esto si tienes la lógica real para calcularlo
+            img: 'ruta-a-imagen',
+            timeAgo: '1 d',
             selected: false,
             email: egresado.emailInstitucional,
             sede: egresado.sedeUniversitaria || 'N/A',
@@ -45,13 +49,23 @@ export class ReporteComponent implements OnInit{
             fechaTerminacion: egresado.fechaGrado ? new Date(egresado.fechaGrado).toLocaleDateString() : 'N/A',
             facultad: egresado.facultad || 'N/A',
             programa: egresado.programa || 'N/A',
-          }));
+            
+          }
+        )
+        
+        );
+        this.alertMessage = response.message;
+        this.isVisible = true;
+        this.icon = 'fas fa-check-circle';
         } else {
           console.error('Error al listar los egresados: Respuesta no válida o lista vacía.');
         }
       },
       error => {
         console.error('Error al listar los egresados:', error);
+        this.alertMessage = 'Error a listar los egresados';
+        this.isVisible = true;
+        this.icon = 'fas fa-check-circle';
       }
     );
   }
@@ -82,20 +96,16 @@ export class ReporteComponent implements OnInit{
 
   onFileSelected(event: any) {
     const archivos = Array.from(event.target.files) as File[];  
-    // Asegurarse de que haya al menos un archivo seleccionado
     if (archivos.length > 0) {
-      const archivo = archivos[0]; // Suponiendo que solo seleccionas un archivo
-      this.nameFile = archivo.name; // Guardar el nombre del archivo
+      const archivo = archivos[0];
+      this.nameFile = archivo.name;
   
-      // Verificar si es un archivo PDF
       if (archivo.type === 'application/pdf') {
         const reader = new FileReader();
   
         reader.onload = () => {
-          const base64String = reader.result?.toString().split(',')[1]; // Obtener solo la parte base64
-          console.log('Archivo en Base64:', base64String);
+          const base64String = reader.result?.toString().split(',')[1];
           
-          // Guardar el archivo convertido en base64 en archivosSeleccionados (si es necesario)
           this.archivosSeleccionados = base64String || '';
         };
   
@@ -103,7 +113,6 @@ export class ReporteComponent implements OnInit{
           console.error('Error al leer el archivo:', error);
         };
   
-        // Leer el archivo como base64
         reader.readAsDataURL(archivo);
       } else {
         console.error('El archivo seleccionado no es un PDF.');
@@ -115,7 +124,6 @@ export class ReporteComponent implements OnInit{
     }
   }
 
-  // LOGICA PARA ENVIAR CORREO A USUARIOS SELECCIONADOS!!!!!!!!!!!!!!!!!!!!!!!!!
   getSelectedUsers() {
     return this.items.filter(item => item.selected);
   }
@@ -140,33 +148,33 @@ export class ReporteComponent implements OnInit{
 
     this.reporteService.enviarCorreos(correo).subscribe(
       data => {
-        console.log("Correos enviados");
-        console.log(data);
+        this.alertMessage = data.message;
+        this.isVisible = true;
+        this.icon = 'fas fa-check-circle';
         
+      },err => {
+        this.alertMessage = 'Error al enviar el correo';
+        this.isVisible = true;
+        this.icon = 'fas fa-check-circle';
       }
     )
-
-    console.log('Enviando correo a los siguientes destinatarios:', correosUsuarios);
-    console.log('Datos del correo:', correo);
 
     this.closeModal();
   }
 
   descargarExcel() {
-    const usuariosSeleccionados = this.getSelectedUsers(); // Usamos la lógica de selección que ya tienes
+    const usuariosSeleccionados = this.getSelectedUsers();
 
-    let ids: number[] | null = null; // Creamos un array de IDs, inicialmente null
+    let ids: number[] | null = null;
 
     if (usuariosSeleccionados.length > 0) {
-      ids = usuariosSeleccionados.map(user => user.id); // Si hay usuarios seleccionados, llenamos los IDs
+      ids = usuariosSeleccionados.map(user => user.id);
     }
     console.log(ids);
     
 
-    // Llamamos al servicio para descargar el archivo
     this.reporteService.descargarExcel(ids).subscribe(
       response => {
-        // Crear un enlace para descargar el archivo CSV
         const blob = new Blob([response], { type: 'application/octet-stream' });
         const downloadUrl = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
@@ -174,6 +182,9 @@ export class ReporteComponent implements OnInit{
         a.download = 'ListaEgresados.xlsx';
         a.click();
         window.URL.revokeObjectURL(downloadUrl);
+        this.alertMessage = "Excel generado exitosamente";
+        this.isVisible = true;
+        this.icon = 'fas fa-check-circle';
       },
       error => {
         console.error('Error al descargar el archivo:', error);

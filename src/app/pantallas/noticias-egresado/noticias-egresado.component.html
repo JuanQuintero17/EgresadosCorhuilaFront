@@ -1,3 +1,4 @@
+<app-modal-error [message]="alertMessage" [visible]="isVisible" [icon]="icon"></app-modal-error>
 <div class="news-container" *ngIf="isNoticias">
   <div class="news-card" *ngFor="let noticia of noticias">
     <img class="news-image" [src]="noticia.imagen" alt="Imagen de la noticia">

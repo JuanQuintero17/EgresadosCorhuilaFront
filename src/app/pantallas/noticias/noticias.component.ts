@@ -11,6 +11,10 @@ import imageCompression from 'browser-image-compression';
 })
 export class NoticiasComponent implements OnInit{
 
+  alertMessage: string = ''; // Inicialmente vacío
+  isVisible: boolean = false;
+  icon: string = '';
+
   ngOnInit(): void {
     this.listarNoticias();
   }
@@ -34,6 +38,9 @@ export class NoticiasComponent implements OnInit{
     this.noticiasService.listNoticiasTotales().subscribe(
       response => {
         console.log(response);
+        this.alertMessage = response.message;
+        this.isVisible = true;
+        this.icon = 'fas fa-check-circle';
         if (response && response.listObject && Array.isArray(response.listObject) && response.listObject.length > 0) {
           this.noticias = response.listObject[0]; // Asignamos el primer array de listObject a noticias
         } else {

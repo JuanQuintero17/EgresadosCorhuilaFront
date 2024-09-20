@@ -18,6 +18,9 @@ export class AdminComponent implements OnInit{
   showError = false;
   isModalOpen: boolean = false;
   isModal: boolean = false;
+  alertMessage: string = ''; // Inicialmente vacío
+  isVisible: boolean = false;
+  icon: string = '';
 
   formData = {
     username: '',
@@ -55,6 +58,9 @@ export class AdminComponent implements OnInit{
       },
       err => {
         console.log('Error al iniciar sesion');
+        this.alertMessage = err.error.message;
+        this.isVisible = true;
+        this.icon = 'fas fa-check-circle';
       }
     )
   }

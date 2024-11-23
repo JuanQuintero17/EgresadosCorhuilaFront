@@ -38,5 +38,10 @@ export class ActualizarDatosService {
   public listarTodos(): Observable<any>{
     return this.httpClient.get<any>(this.actualizarDatosURL + 'listar')
   }
+
+  public listarEgresadosId(id: number): Observable<any>{
+    const params = new HttpParams().set('id', id)
+    return this.httpClient.post<any>(this.actualizarDatosURL + 'recuperarUsuario', null,{params})
+  }
   
 }

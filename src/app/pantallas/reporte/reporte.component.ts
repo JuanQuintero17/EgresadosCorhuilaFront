@@ -18,10 +18,16 @@ export class ReporteComponent implements OnInit{
   isModalOpen = false;
   asunto: string = '';
   descripcion: string = '';
-
+  isDetailModalOpen: boolean = false;
+  egresadoSeleccionado: Egresado | null = null;
+  egresadoConsultado: any | null = null;
   alertMessage: string = ''; // Inicialmente vacío
   isVisible: boolean = false;
   icon: string = '';
+  currentSlide: number = 0; // Slide inicial
+  totalSlides: number = 3;  // Total de slides (cambia si añades más)
+  searchTerm: string = ''; // Lo que el usuario escribe en el input
+  filteredItems: any[] = []; // Lista filtrada de elementos
   
 
   constructor(
@@ -31,14 +37,17 @@ export class ReporteComponent implements OnInit{
 
   ngOnInit(): void {
     this.listarEgresados()
+    this.filteredItems = this.items;
   }
 
   listarEgresados() {
     this.actualizarDatosService.listarTodos().subscribe(
       response => {
+        console.log(response);
         if (response.status === 'OK' && response.listObject?.length > 0) {
           this.items = response.listObject[0].map((egresado: any) => ({
             id: egresado.id || egresado.id,
+            identificacion: egresado.noIdentificacion,
             name: `${egresado.primerNombre} ${egresado.segundoNombre || ''} ${egresado.primerApellido} ${egresado.segundoApellido || ''}`.trim(),
             img: 'ruta-a-imagen',
             timeAgo: '1 d',
@@ -51,9 +60,12 @@ export class ReporteComponent implements OnInit{
             programa: egresado.programa || 'N/A',
             
           }
+          
+          
         )
         
         );
+        this.filteredItems = [...this.items]; 
         this.alertMessage = response.message;
         this.isVisible = true;
         this.icon = 'fas fa-check-circle';
@@ -70,7 +82,39 @@ export class ReporteComponent implements OnInit{
     );
   }
 
- 
+  filterTable() {
+    const searchTermLower = this.searchTerm.toLowerCase(); // Convertir el término a minúsculas para búsqueda insensible a mayúsculas
+    this.filteredItems = this.items.filter((item) => {
+      return (
+        item.identificacion?.toString().toLowerCase().includes(searchTermLower) ||
+        item.name?.toLowerCase().includes(searchTermLower) ||
+        item.email?.toLowerCase().includes(searchTermLower) ||
+        item.sede?.toLowerCase().includes(searchTermLower) ||
+        item.facultad?.toLowerCase().includes(searchTermLower) ||
+        item.programa?.toLowerCase().includes(searchTermLower)
+      );
+    });
+  }
+  
+
+  abrirDetalle(egresado: Egresado) {
+    this.egresadoSeleccionado = egresado
+    this.isDetailModalOpen = true;
+    console.log(egresado);
+    this.actualizarDatosService.listarEgresadosId(egresado.id).subscribe(
+      response => {
+        console.log(response);
+        this.egresadoConsultado = response;
+
+      }
+    )
+  }
+  
+  cerrarDetalle() {
+    this.egresadoSeleccionado = null;
+    this.egresadoConsultado = null;
+    this.isDetailModalOpen = false;
+  }
 
   
 
@@ -190,6 +234,18 @@ export class ReporteComponent implements OnInit{
         console.error('Error al descargar el archivo:', error);
       }
     );
+  }
+
+  nextSlide() {
+    if (this.currentSlide < this.totalSlides - 1) {
+      this.currentSlide++;
+    }
+  }
+  
+  prevSlide() {
+    if (this.currentSlide > 0) {
+      this.currentSlide--;
+    }
   }
 
 }

@@ -1,5 +1,6 @@
 export interface Egresado {
     id: number;
+    identificacion: number
     name: string;
     img: string;
     timeAgo: string;

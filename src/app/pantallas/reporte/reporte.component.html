@@ -1,8 +1,14 @@
 <div class="report-container">
     <div class="header">
       <div class="header-left">
-        <h2>Reporte</h2>
-        <input type="text" placeholder="Buscar..." class="search-input" />
+        <!-- <h2>Reporte</h2> -->
+        <input
+          type="text"
+          placeholder="Buscar..."
+          class="search-input"
+          [(ngModel)]="searchTerm"
+          (input)="filterTable()"
+        />
       </div>
     </div>
     <app-modal-error [message]="alertMessage" [visible]="isVisible" [icon]="icon"></app-modal-error>
@@ -11,6 +17,7 @@
       <thead>
           <tr>
               <th><input type="checkbox" (change)="toggleSelectAll()" /></th>
+              <th>N° Identificación</th>
               <th>Nombre</th>
               <th>Correo Institucional</th>
               <th>Sede</th>
@@ -21,8 +28,9 @@
           </tr>
       </thead>
       <tbody>
-          <tr *ngFor="let item of items" [class.selected-row]="item.selected">
-              <td><input type="checkbox" [(ngModel)]="item.selected" /></td>
+          <tr *ngFor="let item of filteredItems" [class.selected-row]="item.selected" (click)="abrirDetalle(item)">
+              <td><input type="checkbox" [(ngModel)]="item.selected" (click)="$event.stopPropagation()" /></td>
+              <td>{{ item.identificacion }}</td>
               <td>{{ item.name }}</td>
               <td>{{ item.email }}</td>
               <td>{{ item.sede }}</td>
@@ -85,4 +93,67 @@
       </form>
     </div>
   </div>
+  <div *ngIf="isDetailModalOpen" class="modal">
+    <div class="modal-content">
+      <span class="close" (click)="cerrarDetalle()">&times;</span>
+      <h2>Detalle del Egresado</h2>
+  
+      <div class="carousel-container">
+        <div
+          class="carousel-slide"
+          [style.transform]="'translateX(-' + currentSlide * 100 + '%)'"
+        >
+          <!-- Slide 1: Información básica -->
+          <div class="slide">
+            <h3>Información Básica</h3>
+            <p><strong>N° Identificación:</strong> {{ egresadoConsultado?.noIdentificacion }}</p>
+            <p><strong>Nombre:</strong> {{ egresadoSeleccionado?.name }}</p>
+            <p><strong>Fecha Nacimiento:</strong> {{ egresadoConsultado?.fechaNacimiento }}</p>
+            <p><strong>Edad:</strong> {{ egresadoConsultado?.edad }}</p>
+            <p><strong>Correo:</strong> {{ egresadoConsultado?.email }}</p>
+            <p><strong>Correo Institucional:</strong> {{ egresadoSeleccionado?.email }}</p>
+            <p><strong>Telfono:</strong> {{ egresadoConsultado?.telefono }}</p>
+            <p><strong>Ciudad Recidencia:</strong> {{ egresadoConsultado?.ciudadRecidencia }}</p>
+            <p><strong>Direccion Recidencia:</strong> {{ egresadoConsultado?.direccionRecidencia }}</p>
+          </div>
+  
+          <!-- Slide 2: Información Académica -->
+          <div class="slide">
+            <h3>Información Académica</h3>
+            <p><strong>Sede:</strong> {{ egresadoSeleccionado?.sede }}</p>
+            <p><strong>Facultad:</strong> {{ egresadoSeleccionado?.facultad }}</p>
+            <p><strong>Programa:</strong> {{ egresadoSeleccionado?.programa }}</p>
+            <p><strong>Ultimo Semestre:</strong> {{ egresadoConsultado?.ultimoSemestre }}</p>
+            <p><strong>Fecha de Grado:</strong> {{ egresadoConsultado?.fechaGrado }}</p>
+            <p><strong>Calificacion Obetnida:</strong> {{ egresadoConsultado?.calificacionObtenida }}</p>
+            <p><strong>Titulo de Obetnido:</strong> {{ egresadoConsultado?.tituloObtenido }}</p>
+            <p><strong>Ultimo Nivel de Formacion:</strong> {{ egresadoConsultado?.ultimoNivelFormacion }}</p>
+            <p><strong>Modalidad de Grado:</strong> {{ egresadoConsultado?.modalidad }}</p>
+            <p><strong>Titulo del Trabajo:</strong> {{ egresadoConsultado?.tituloTrabajoGrado }}</p>
+          </div>
+  
+          <!-- Slide 3: Fechas -->
+          <div class="slide">
+            <h3>Datos Laborales</h3>
+            <p><strong>Trabaja Actualmente:</strong> {{ egresadoConsultado?.labora }}</p>
+            <p><strong>Es relacionado a la Formacion:</strong> {{ egresadoConsultado?.relacionFormacion }}</p>
+            <p><strong>Rol que Ejecuta:</strong> {{ egresadoConsultado?.rolEjecuta }}</p>
+            <p><strong>Actividad que Ejecuta:</strong> {{ egresadoConsultado?.actividadEjecuta }}</p>
+            <p><strong>Tipo de Contrato:</strong> {{ egresadoConsultado?.tipoContrato }}</p>
+            <p><strong>Nombre Empresa:</strong> {{ egresadoConsultado?.nombreEmpresa }}</p>
+            <p><strong>Fecha de Ingreso:</strong> {{ egresadoSeleccionado?.fechaIngreso }}</p>
+            <p><strong>Rango Salarial:</strong> {{ egresadoConsultado?.rangoSalarial }}</p>
+            <p><strong>Modalidad de Trabajo:</strong> {{ egresadoConsultado?.modalidadTrabajo }}</p>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Controles -->
+      <div class="carousel-controls">
+        <button (click)="prevSlide()" [disabled]="currentSlide === 0">⬅️</button>
+        <button (click)="nextSlide()" [disabled]="currentSlide === totalSlides - 1">➡️</button>
+      </div>
+    </div>
+  </div>
+  
   
